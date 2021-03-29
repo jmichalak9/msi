@@ -12,7 +12,7 @@ namespace FuzzySetLib
         {
             CheckImplArguments(x, y);
             if (x <= y)
-                return 1;
+                return 0.5;
             return y;
         }
         public static float KleeneDienes(float x, float y)
