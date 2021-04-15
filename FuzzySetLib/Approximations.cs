@@ -32,6 +32,27 @@ namespace FuzzySetLib
 
             return approx;
         }
+        
+        public static Bounds[,] PropertyBoundApproximation(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q, float[,] R)
+        {
+            var approx = new Bounds[Q.GetLength(0), Q.GetLength(1)];
+
+            for (int i = 0; i < Q.GetLength(0); i++)
+            {
+                var q = Enumerable.Range(0, Q.GetLength(1))
+                    .Select(x => Q[i, x])
+                    .ToArray();
+                var lowerApprox = ObjectLowerApprox(norm, impl, Q, q);
+                var upperApprox = ObjectUpperApprox(norm, impl, Q, q);
+                for (int j = 0; j < q.GetLength(0); j++)
+                {
+                    approx[i, j].lower = lowerApprox[j];
+                    approx[i, j].upper = upperApprox[j];
+                }
+            }
+
+            return approx;
+        }
 
         // aka triangle pointed up
         private static float[] ObjectLowerApprox(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q, float[] R)

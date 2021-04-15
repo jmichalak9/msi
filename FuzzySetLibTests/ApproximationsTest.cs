@@ -3,11 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace FuzzySetLibTests
 {
     public class ApproximationsTest
-    {
+    {    
+        private readonly ITestOutputHelper _testOutputHelper;
+        public ApproximationsTest(ITestOutputHelper testOutputHelper)
+        {
+            _testOutputHelper = testOutputHelper;
+        }
         [Fact]
         public void ObjectBoundApproximationTest()
         {
@@ -36,6 +42,36 @@ namespace FuzzySetLibTests
 
             AssertApproximationsEqual(exp, act);
         }
+        
+        [Fact]
+        public void PropertyBoundApproximationTest()
+        {
+            var Q = new float[,]{
+                { 0.4f, 0.3f, 0.1f, 0.4f, 0.1f },
+                { 0.7f, 0.1f, 0.0f, 0.7f, 0.1f },
+                { 0.3f, 0.6f, 0.2f, 0.2f, 0.1f },
+                { 0.1f, 0.2f, 0.8f, 0.2f, 0.2f },
+                { 0.1f, 0.0f, 0.2f, 0.2f, 0.8f },
+            };
+            var R = new float[,]{
+                { 0.8f, 0.6f, 0.2f, 0.6f, 0.1f },
+                { 0.0f, 0.4f, 0.6f, 0.1f, 0.1f },
+                { 0.8f, 0.8f, 0.0f, 0.2f, 0.0f },
+                { 0.6f, 0.5f, 0.3f, 0.7f, 0.3f },
+            };
+            var exp = new Bounds[,]
+            {
+                { b(0.4,0.4), b(0.3,0.4), b(0.1,0.2), b(0.4,0.4), b(0.1,0.2), },
+                { b(0.7,0.7), b(0.1,0.4), b(0.0,0.2), b(0.7,0.7), b(0.1,0.2), },
+                { b(0.3,0.3), b(0.6,0.6), b(0.2,0.2), b(0.2,0.3), b(0.1,0.2), },
+                { b(0.1,0.3), b(0.2,0.4), b(0.8,0.8), b(0.2,0.3), b(0.2,0.2), },
+                { b(0.1,0.3), b(0.0,0.4), b(0.2,0.2), b(0.2,0.3), b(0.8,0.8), },
+            };
+
+            var act = Approximations.PropertyBoundApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
+
+            AssertApproximationsEqual(exp, act);
+        }
 
 
 
@@ -54,6 +90,8 @@ namespace FuzzySetLibTests
             for (int i = 0; i < exp.GetLength(0); i++)
                 for (int j = 0; j < exp.GetLength(1); j++)
                 {
+                    //System.Diagnostics.Debug.WriteLine("Matrix has you...");
+                    _testOutputHelper.WriteLine($"{i}, {j}: exp=({exp[i,j].lower}, {exp[i,j].upper}) act=({act[i,j].lower}, {act[i,j].upper})");
                     Assert.Equal(exp[i, j], act[i, j], new ApproximationComparer());
                 }
         }
