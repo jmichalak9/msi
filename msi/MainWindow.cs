@@ -12,6 +12,9 @@ namespace msi
 {
     public partial class MainWindow : Form
     {
+
+        private Set qSet;
+        private Set rSet;
         public MainWindow()
         {
             InitializeComponent();

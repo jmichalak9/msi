@@ -53,33 +53,41 @@ namespace msi
             this.EditPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.QSetEdit = new System.Windows.Forms.DataGridView();
+            this.RSetEdit = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.AddCandidateButton = new System.Windows.Forms.Button();
             this.CandidateTextBox = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
             this.SkillTextBox = new System.Windows.Forms.TextBox();
             this.AddSkillButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
             this.JobPositionTextBox = new System.Windows.Forms.TextBox();
             this.AddJobPositionButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.IndirectCalculationsPage = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
-            this.QSetEdit = new System.Windows.Forms.DataGridView();
-            this.RSetEdit = new System.Windows.Forms.DataGridView();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.IndirectCalculationsPage = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+            this.FirstStepGroupBox = new System.Windows.Forms.GroupBox();
+            this.SecondStepGroupBox = new System.Windows.Forms.GroupBox();
+            this.ThirdStepGroupBox = new System.Windows.Forms.GroupBox();
+            this.FirstStepSet = new System.Windows.Forms.DataGridView();
+            this.SecondStep = new System.Windows.Forms.DataGridView();
+            this.ThirdStep = new System.Windows.Forms.DataGridView();
             this.TabControlMenu.SuspendLayout();
             this.MainPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -96,6 +104,8 @@ namespace msi
             this.EditPage.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.QSetEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RSetEdit)).BeginInit();
             this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
@@ -103,10 +113,17 @@ namespace msi
             this.tableLayoutPanel18.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
-            this.IndirectCalculationsPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.QSetEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RSetEdit)).BeginInit();
             this.tableLayoutPanel19.SuspendLayout();
+            this.IndirectCalculationsPage.SuspendLayout();
+            this.tableLayoutPanel20.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel21.SuspendLayout();
+            this.FirstStepGroupBox.SuspendLayout();
+            this.SecondStepGroupBox.SuspendLayout();
+            this.ThirdStepGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FirstStepSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondStep)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThirdStep)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControlMenu
@@ -412,6 +429,26 @@ namespace msi
             this.tableLayoutPanel10.Size = new System.Drawing.Size(780, 187);
             this.tableLayoutPanel10.TabIndex = 0;
             // 
+            // QSetEdit
+            // 
+            this.QSetEdit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.QSetEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QSetEdit.Location = new System.Drawing.Point(13, 3);
+            this.QSetEdit.Name = "QSetEdit";
+            this.QSetEdit.RowTemplate.Height = 25;
+            this.QSetEdit.Size = new System.Drawing.Size(364, 181);
+            this.QSetEdit.TabIndex = 0;
+            // 
+            // RSetEdit
+            // 
+            this.RSetEdit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RSetEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RSetEdit.Location = new System.Drawing.Point(403, 3);
+            this.RSetEdit.Name = "RSetEdit";
+            this.RSetEdit.RowTemplate.Height = 25;
+            this.RSetEdit.Size = new System.Drawing.Size(364, 181);
+            this.RSetEdit.TabIndex = 1;
+            // 
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.ColumnCount = 9;
@@ -497,6 +534,15 @@ namespace msi
             this.CandidateTextBox.Size = new System.Drawing.Size(132, 28);
             this.CandidateTextBox.TabIndex = 1;
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 23);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(198, 115);
+            this.flowLayoutPanel2.TabIndex = 0;
+            // 
             // tableLayoutPanel14
             // 
             this.tableLayoutPanel14.ColumnCount = 1;
@@ -560,6 +606,16 @@ namespace msi
             this.label3.TabIndex = 0;
             this.label3.Text = "Skill";
             // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.AutoScroll = true;
+            this.flowLayoutPanel4.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 23);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(198, 115);
+            this.flowLayoutPanel4.TabIndex = 6;
+            // 
             // tableLayoutPanel15
             // 
             this.tableLayoutPanel15.ColumnCount = 1;
@@ -577,6 +633,16 @@ namespace msi
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel15.Size = new System.Drawing.Size(204, 181);
             this.tableLayoutPanel15.TabIndex = 1;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.AutoScroll = true;
+            this.flowLayoutPanel3.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 23);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(198, 115);
+            this.flowLayoutPanel3.TabIndex = 5;
             // 
             // tableLayoutPanel17
             // 
@@ -622,104 +688,6 @@ namespace msi
             this.label2.TabIndex = 0;
             this.label2.Text = "Job position";
             // 
-            // IndirectCalculationsPage
-            // 
-            this.IndirectCalculationsPage.Controls.Add(this.tableLayoutPanel7);
-            this.IndirectCalculationsPage.Location = new System.Drawing.Point(4, 24);
-            this.IndirectCalculationsPage.Name = "IndirectCalculationsPage";
-            this.IndirectCalculationsPage.Size = new System.Drawing.Size(792, 422);
-            this.IndirectCalculationsPage.TabIndex = 2;
-            this.IndirectCalculationsPage.Text = "Indirect calculations";
-            this.IndirectCalculationsPage.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 2;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(792, 422);
-            this.tableLayoutPanel7.TabIndex = 0;
-            // 
-            // tableLayoutPanel9
-            // 
-            this.tableLayoutPanel9.ColumnCount = 2;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 1;
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(200, 100);
-            this.tableLayoutPanel9.TabIndex = 0;
-            // 
-            // tableLayoutPanel11
-            // 
-            this.tableLayoutPanel11.ColumnCount = 2;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
-            this.tableLayoutPanel11.RowCount = 1;
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(200, 100);
-            this.tableLayoutPanel11.TabIndex = 0;
-            // 
-            // QSetEdit
-            // 
-            this.QSetEdit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.QSetEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QSetEdit.Location = new System.Drawing.Point(13, 3);
-            this.QSetEdit.Name = "QSetEdit";
-            this.QSetEdit.RowTemplate.Height = 25;
-            this.QSetEdit.Size = new System.Drawing.Size(364, 181);
-            this.QSetEdit.TabIndex = 0;
-            // 
-            // RSetEdit
-            // 
-            this.RSetEdit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RSetEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RSetEdit.Location = new System.Drawing.Point(403, 3);
-            this.RSetEdit.Name = "RSetEdit";
-            this.RSetEdit.RowTemplate.Height = 25;
-            this.RSetEdit.Size = new System.Drawing.Size(364, 181);
-            this.RSetEdit.TabIndex = 1;
-            // 
-            // flowLayoutPanel3
-            // 
-            this.flowLayoutPanel3.AutoScroll = true;
-            this.flowLayoutPanel3.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 23);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(198, 115);
-            this.flowLayoutPanel3.TabIndex = 5;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 23);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(198, 115);
-            this.flowLayoutPanel2.TabIndex = 0;
-            // 
-            // flowLayoutPanel4
-            // 
-            this.flowLayoutPanel4.AutoScroll = true;
-            this.flowLayoutPanel4.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 23);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(198, 115);
-            this.flowLayoutPanel4.TabIndex = 6;
-            // 
             // tableLayoutPanel19
             // 
             this.tableLayoutPanel19.ColumnCount = 1;
@@ -745,6 +713,157 @@ namespace msi
             this.SaveButton.TabIndex = 0;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
+            // 
+            // IndirectCalculationsPage
+            // 
+            this.IndirectCalculationsPage.Controls.Add(this.tableLayoutPanel7);
+            this.IndirectCalculationsPage.Location = new System.Drawing.Point(4, 24);
+            this.IndirectCalculationsPage.Name = "IndirectCalculationsPage";
+            this.IndirectCalculationsPage.Size = new System.Drawing.Size(792, 422);
+            this.IndirectCalculationsPage.TabIndex = 2;
+            this.IndirectCalculationsPage.Text = "Indirect calculations";
+            this.IndirectCalculationsPage.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 2;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(200, 100);
+            this.tableLayoutPanel9.TabIndex = 0;
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 2;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 1;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(200, 100);
+            this.tableLayoutPanel11.TabIndex = 0;
+            // 
+            // tableLayoutPanel20
+            // 
+            this.tableLayoutPanel20.ColumnCount = 5;
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel20.Controls.Add(this.FirstStepGroupBox, 1, 0);
+            this.tableLayoutPanel20.Controls.Add(this.SecondStepGroupBox, 3, 0);
+            this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(5, 17);
+            this.tableLayoutPanel20.Name = "tableLayoutPanel20";
+            this.tableLayoutPanel20.RowCount = 1;
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(782, 184);
+            this.tableLayoutPanel20.TabIndex = 0;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel20, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel21, 0, 3);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 5;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(792, 422);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
+            // tableLayoutPanel21
+            // 
+            this.tableLayoutPanel21.ColumnCount = 5;
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel21.Controls.Add(this.ThirdStepGroupBox, 1, 0);
+            this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(5, 221);
+            this.tableLayoutPanel21.Name = "tableLayoutPanel21";
+            this.tableLayoutPanel21.RowCount = 1;
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(782, 184);
+            this.tableLayoutPanel21.TabIndex = 1;
+            // 
+            // FirstStepGroupBox
+            // 
+            this.FirstStepGroupBox.Controls.Add(this.FirstStepSet);
+            this.FirstStepGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FirstStepGroupBox.Location = new System.Drawing.Point(13, 3);
+            this.FirstStepGroupBox.Name = "FirstStepGroupBox";
+            this.FirstStepGroupBox.Size = new System.Drawing.Size(370, 178);
+            this.FirstStepGroupBox.TabIndex = 0;
+            this.FirstStepGroupBox.TabStop = false;
+            this.FirstStepGroupBox.Text = "First step";
+            // 
+            // SecondStepGroupBox
+            // 
+            this.SecondStepGroupBox.Controls.Add(this.SecondStep);
+            this.SecondStepGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SecondStepGroupBox.Location = new System.Drawing.Point(399, 3);
+            this.SecondStepGroupBox.Name = "SecondStepGroupBox";
+            this.SecondStepGroupBox.Size = new System.Drawing.Size(370, 178);
+            this.SecondStepGroupBox.TabIndex = 1;
+            this.SecondStepGroupBox.TabStop = false;
+            this.SecondStepGroupBox.Text = "Second step";
+            // 
+            // ThirdStepGroupBox
+            // 
+            this.ThirdStepGroupBox.Controls.Add(this.ThirdStep);
+            this.ThirdStepGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ThirdStepGroupBox.Location = new System.Drawing.Point(13, 3);
+            this.ThirdStepGroupBox.Name = "ThirdStepGroupBox";
+            this.ThirdStepGroupBox.Size = new System.Drawing.Size(370, 178);
+            this.ThirdStepGroupBox.TabIndex = 0;
+            this.ThirdStepGroupBox.TabStop = false;
+            this.ThirdStepGroupBox.Text = "Third step";
+            // 
+            // FirstStepSet
+            // 
+            this.FirstStepSet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.FirstStepSet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FirstStepSet.Location = new System.Drawing.Point(3, 19);
+            this.FirstStepSet.Name = "FirstStepSet";
+            this.FirstStepSet.RowTemplate.Height = 25;
+            this.FirstStepSet.Size = new System.Drawing.Size(364, 156);
+            this.FirstStepSet.TabIndex = 0;
+            // 
+            // SecondStep
+            // 
+            this.SecondStep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SecondStep.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SecondStep.Location = new System.Drawing.Point(3, 19);
+            this.SecondStep.Name = "SecondStep";
+            this.SecondStep.RowTemplate.Height = 25;
+            this.SecondStep.Size = new System.Drawing.Size(364, 156);
+            this.SecondStep.TabIndex = 0;
+            // 
+            // ThirdStep
+            // 
+            this.ThirdStep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ThirdStep.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ThirdStep.Location = new System.Drawing.Point(3, 19);
+            this.ThirdStep.Name = "ThirdStep";
+            this.ThirdStep.RowTemplate.Height = 25;
+            this.ThirdStep.Size = new System.Drawing.Size(364, 156);
+            this.ThirdStep.TabIndex = 0;
             // 
             // MainWindow
             // 
@@ -772,6 +891,8 @@ namespace msi
             this.EditPage.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.QSetEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RSetEdit)).EndInit();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tableLayoutPanel13.PerformLayout();
@@ -785,10 +906,17 @@ namespace msi
             this.tableLayoutPanel15.PerformLayout();
             this.tableLayoutPanel17.ResumeLayout(false);
             this.tableLayoutPanel17.PerformLayout();
-            this.IndirectCalculationsPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.QSetEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RSetEdit)).EndInit();
             this.tableLayoutPanel19.ResumeLayout(false);
+            this.IndirectCalculationsPage.ResumeLayout(false);
+            this.tableLayoutPanel20.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel21.ResumeLayout(false);
+            this.FirstStepGroupBox.ResumeLayout(false);
+            this.SecondStepGroupBox.ResumeLayout(false);
+            this.ThirdStepGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.FirstStepSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondStep)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThirdStep)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -829,7 +957,6 @@ namespace msi
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.Button AddCandidateButton;
@@ -846,6 +973,15 @@ namespace msi
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel19;
         private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
+        private System.Windows.Forms.GroupBox FirstStepGroupBox;
+        private System.Windows.Forms.GroupBox SecondStepGroupBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
+        private System.Windows.Forms.GroupBox ThirdStepGroupBox;
+        private System.Windows.Forms.DataGridView FirstStepSet;
+        private System.Windows.Forms.DataGridView SecondStep;
+        private System.Windows.Forms.DataGridView ThirdStep;
     }
 }
 
