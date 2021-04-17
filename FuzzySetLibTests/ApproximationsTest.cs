@@ -90,8 +90,6 @@ namespace FuzzySetLibTests
             for (int i = 0; i < exp.GetLength(0); i++)
                 for (int j = 0; j < exp.GetLength(1); j++)
                 {
-                    //System.Diagnostics.Debug.WriteLine("Matrix has you...");
-                    _testOutputHelper.WriteLine($"{i}, {j}: exp=({exp[i,j].lower}, {exp[i,j].upper}) act=({act[i,j].lower}, {act[i,j].upper})");
                     Assert.Equal(exp[i, j], act[i, j], new ApproximationComparer());
                 }
         }
