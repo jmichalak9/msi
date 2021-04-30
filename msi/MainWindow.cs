@@ -14,6 +14,20 @@ namespace msi
 {
     public partial class MainWindow : Form
     {
+        private string ExamplesPath { get 
+            {
+                string path = Application.StartupPath;
+                int x = path.LastIndexOf("\\");
+                for (int i = 0; i < 3; i++)
+                {
+                    path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
+                    x = path.LastIndexOf("\\");
+                }
+                path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
+                path += "\\Examples";
+                return path;
+            }
+        }
         private Button SelectedCandidate = null;
         private Button SelectedJobPosition = null;
         private Button SelectedSkill = null;
@@ -42,32 +56,37 @@ namespace msi
 
         private void MainWindowLoadData(Data data)
         {
+            ClearMainWindowDataGrids();
+            if (data == null) return;
+            DisplayDataGridView(data.Q, QSetDataGrid);
+            DisplayDataGridView(data.R, RSetDataGrid);
+        }
+
+        private void ClearMainWindowDataGrids()
+        {
             QSetDataGrid.DataSource = null;
             QSetDataGrid.Rows.Clear();
             QSetDataGrid.Columns.Clear();
             RSetDataGrid.DataSource = null;
             RSetDataGrid.Rows.Clear();
             RSetDataGrid.Columns.Clear();
-            if (data == null) return;
-            DisplayDataGridView(data.Q, QSetDataGrid);
-            DisplayDataGridView(data.R, RSetDataGrid);
         }
 
         private void EditWindowLoadData(Data data)
         {
-            QSetEdit.DataSource = null;
-            QSetEdit.Rows.Clear();
-            QSetEdit.Columns.Clear();
-            RSetEdit.DataSource = null;
-            RSetEdit.Rows.Clear();
-            RSetEdit.Columns.Clear();
-            JobPositionLayoutPanel.Controls.Clear();
-            CandidateLayoutPanel.Controls.Clear();
-            SkillLayoutPanel.Controls.Clear();
+            ClearEditWindowDataGrids();
+            ClearEditWindowPanels();
             if (data == null) return;
             NameEditTextBox.Text = data.Name;
             DisplayDataGridView(data.Q, QSetEdit);
             DisplayDataGridView(data.R, RSetEdit);
+            FillJobPositionPanel(data);
+            FillCandidatePanel(data);
+            FillSkillPanel(data);
+        }
+
+        private void FillJobPositionPanel(Data data)
+        {
             foreach (string rowname in data.R.RowNames)
             {
                 Button newButton = new Button();
@@ -86,6 +105,10 @@ namespace msi
                 };
                 JobPositionLayoutPanel.Controls.Add(newButton);
             }
+        }
+
+        private void FillCandidatePanel(Data data)
+        {
             foreach (string rowname in data.Q.RowNames)
             {
                 Button newButton = new Button();
@@ -104,6 +127,10 @@ namespace msi
                 };
                 CandidateLayoutPanel.Controls.Add(newButton);
             }
+        }
+
+        private void FillSkillPanel(Data data)
+        {
             foreach (string colname in data.Q.ColNames)
             {
                 Button newButton = new Button();
@@ -124,20 +151,27 @@ namespace msi
             }
         }
 
+        private void ClearEditWindowPanels()
+        {
+            JobPositionLayoutPanel.Controls.Clear();
+            CandidateLayoutPanel.Controls.Clear();
+            SkillLayoutPanel.Controls.Clear();
+        }
+
+        private void ClearEditWindowDataGrids()
+        {
+            QSetEdit.DataSource = null;
+            QSetEdit.Rows.Clear();
+            QSetEdit.Columns.Clear();
+            RSetEdit.DataSource = null;
+            RSetEdit.Rows.Clear();
+            RSetEdit.Columns.Clear();
+        }
+
         public MainWindow()
         {
             InitializeComponent();
-            string path = Application.StartupPath;
-            int x = path.LastIndexOf("\\");
-            path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-            x = path.LastIndexOf("\\");
-            path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-            x = path.LastIndexOf("\\");
-            path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-            x = path.LastIndexOf("\\");
-            path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-            path += "\\Examples\\Przyklad1";
-            LoadDataFromPath(path);
+            LoadDataFromPath(ExamplesPath + "\\Przyklad1");
         }
 
         private void AddNewDataButton_Click(object sender, EventArgs e)
@@ -185,16 +219,7 @@ namespace msi
             Stream newStream;
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-            string path = Application.StartupPath;
-            int x = path.LastIndexOf("\\");
-            path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-            x = path.LastIndexOf("\\");
-            path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-            x = path.LastIndexOf("\\");
-            path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-            x = path.LastIndexOf("\\");
-            path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-            path += "\\Examples";
+            string path = ExamplesPath;
             saveFileDialog.Filter = "all files (*.*)|*.*";
             saveFileDialog.FilterIndex = 2;
             saveFileDialog.RestoreDirectory = true;
@@ -228,16 +253,7 @@ namespace msi
             var filePath = string.Empty;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                string path = Application.StartupPath;
-                int x = path.LastIndexOf("\\");
-                path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-                x = path.LastIndexOf("\\");
-                path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-                x = path.LastIndexOf("\\");
-                path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-                x = path.LastIndexOf("\\");
-                path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-                path += "\\Examples";
+                string path = ExamplesPath;
                 openFileDialog.Filter = "all files (*.*)|*.*";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
@@ -301,13 +317,46 @@ namespace msi
         private void QSetEdit_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dataGrid = (DataGridView)sender;
-            CurrentEditedData.Q.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex] = float.Parse((string)dataGrid.CurrentCell.Value);
+            var oldData = CurrentEditedData.Q.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex];
+            try
+            {
+                float value = float.Parse((string)dataGrid.CurrentCell.Value);
+
+                if (value >= 0 && value <= 1)
+                {
+                    CurrentEditedData.Q.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex] = value;
+                }
+                else
+                {
+                    CurrentEditedData.Q.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex] = oldData;
+                }
+            }
+            catch(Exception)
+            {
+                return;
+            }
         }
 
         private void RSetEdit_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dataGrid = (DataGridView)sender;
-            CurrentEditedData.R.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex] = float.Parse((string)dataGrid.CurrentCell.Value);
+            var oldData = CurrentEditedData.R.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex];
+            try
+            { 
+                float value = float.Parse((string)dataGrid.CurrentCell.Value);
+                if (value >= 0 && value <= 1)
+                {
+                    CurrentEditedData.R.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex] = value;
+                }
+                else
+                {
+                    CurrentEditedData.R.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex] = oldData;
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -344,7 +393,7 @@ namespace msi
             }
             else
             {
-                CurrentEditedData = null;
+                CurrentEditedData = new Data();
             }
             EditWindowLoadData(CurrentEditedData);
         }
