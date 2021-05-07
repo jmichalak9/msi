@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace msi
 {
     [Serializable]
-    class Set
+    class InputSet
     {
         public Set()
         {
