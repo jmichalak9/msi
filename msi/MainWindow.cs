@@ -92,7 +92,7 @@ namespace msi
                 Button newButton = new Button();
                 newButton.Name = $"jobposition{rowname}";
                 newButton.Text = rowname;
-                newButton.Size = new Size(102, 23);
+                newButton.Size = new Size(90, 23);
                 newButton.Click += (object sender, EventArgs e) =>
                 {
                     SelectedJobPosition = (Button)sender;
@@ -114,7 +114,7 @@ namespace msi
                 Button newButton = new Button();
                 newButton.Name = $"candidate{rowname}";
                 newButton.Text = rowname;
-                newButton.Size = new Size(102, 23);
+                newButton.Size = new Size(90, 23);
                 newButton.Click += (object sender, EventArgs e) =>
                 {
                     SelectedCandidate = (Button)sender;
@@ -136,7 +136,7 @@ namespace msi
                 Button newButton = new Button();
                 newButton.Name = $"skill{colname}";
                 newButton.Text = colname;
-                newButton.Size = new Size(102, 23);
+                newButton.Size = new Size(90, 23);
                 newButton.Click += (object sender, EventArgs e) =>
                 {
                     SelectedSkill = (Button)sender;
