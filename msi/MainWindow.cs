@@ -35,7 +35,7 @@ namespace msi
         private Data CurrentEditedData = new Data();
         private Data SelectedData = null;
         private List<Data> Sets = new List<Data>();
-        private void DisplayDataGridView(Set set, DataGridView dataGrid)
+        private void DisplayDataGridView(InputSet set, DataGridView dataGrid)
         {
             if (set.ColCount == 0) return;
             for (int i = 0; i < set.ColCount; i++)
@@ -424,7 +424,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void RemoveRowFormSet(Set set, string rowName)
+        private void RemoveRowFormSet(InputSet set, string rowName)
         {
             List<string> jobPositions = set.RowNames.ToList();
             int index = jobPositions.IndexOf(rowName);
@@ -460,7 +460,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void RemoveColumnFromSet(Set set, string columnName)
+        private void RemoveColumnFromSet(InputSet set, string columnName)
         {
             List<string> colNames = set.ColNames.ToList();
             int index = colNames.IndexOf(columnName);
@@ -532,7 +532,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void EditRowNameForSet(Set set, string rowName, string newRowName)
+        private void EditRowNameForSet(InputSet set, string rowName, string newRowName)
         {
             List<string> rowNames = set.RowNames.ToList();
             if (rowNames.Contains(newRowName))
@@ -569,7 +569,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void EditColumnNameForSet(Set set, string columnName, string newColumnName)
+        private void EditColumnNameForSet(InputSet set, string columnName, string newColumnName)
         {
             List<string> colNames = set.ColNames.ToList();
             if (colNames.Contains(newColumnName))
@@ -618,7 +618,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void AddRowToSet(Set set, string newRowName)
+        private void AddRowToSet(InputSet set, string newRowName)
         {
             List<string> rowNames = set.RowNames.ToList();
             if(rowNames.Contains(newRowName))
@@ -658,7 +658,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void AddColumnToSet(Set set, string newColumnName)
+        private void AddColumnToSet(InputSet set, string newColumnName)
         {
             List<string> colNames = set.ColNames.ToList();
             if (colNames.Contains(newColumnName))

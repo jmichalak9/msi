@@ -9,7 +9,7 @@ namespace msi
     [Serializable]
     class InputSet
     {
-        public Set()
+        public InputSet()
         {
             ColNames = new string[0];
             RowNames = new string[0];
@@ -21,9 +21,9 @@ namespace msi
         public string[] RowNames { get; set; }
         public float[,] Numbers { get; set; }
 
-        public Set Clone()
+        public InputSet Clone()
         {
-            Set clone = new Set();
+            InputSet clone = new InputSet();
             clone.ColNames = (string[])ColNames.Clone();
             clone.RowNames = (string[])RowNames.Clone();
             clone.Numbers = (float[,])Numbers.Clone();
