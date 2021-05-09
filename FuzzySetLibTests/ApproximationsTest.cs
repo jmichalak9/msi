@@ -24,12 +24,14 @@ namespace FuzzySetLibTests
                   { 0.1f, 0.2f, 0.8f, 0.2f, 0.2f },
                   { 0.1f, 0.0f, 0.2f, 0.2f, 0.8f },
             };
+
             var R = new float[,]{
                   { 0.8f, 0.6f, 0.2f, 0.6f, 0.1f },
                   { 0.0f, 0.4f, 0.6f, 0.1f, 0.1f },
                   { 0.8f, 0.8f, 0.0f, 0.2f, 0.0f },
                   { 0.6f, 0.5f, 0.3f, 0.7f, 0.3f },
             };
+
             var exp = new Bounds[,]
             {
                 { b(0.6,0.8), b(0.6,0.6), b(0.2,0.2), b(0.6,0.8), b(0.1,0.2), },
@@ -53,12 +55,14 @@ namespace FuzzySetLibTests
                 { 0.1f, 0.2f, 0.8f, 0.2f, 0.2f },
                 { 0.1f, 0.0f, 0.2f, 0.2f, 0.8f },
             };
+
             var R = new float[,]{
                 { 0.8f, 0.6f, 0.2f, 0.6f, 0.1f },
                 { 0.0f, 0.4f, 0.6f, 0.1f, 0.1f },
                 { 0.8f, 0.8f, 0.0f, 0.2f, 0.0f },
                 { 0.6f, 0.5f, 0.3f, 0.7f, 0.3f },
             };
+
             var exp = new Bounds[,]
             {
                 { b(0.4,0.4), b(0.3,0.4), b(0.1,0.2), b(0.4,0.4), b(0.1,0.2), },
@@ -72,8 +76,6 @@ namespace FuzzySetLibTests
 
             AssertApproximationsEqual(exp, act);
         }
-
-
 
         private Bounds b(double lower, double upper)
         {
@@ -93,7 +95,6 @@ namespace FuzzySetLibTests
                     Assert.Equal(exp[i, j], act[i, j], new ApproximationComparer());
                 }
         }
-
         private class ApproximationComparer : IEqualityComparer<Bounds>
         {
             public bool Equals(Bounds x, Bounds y)
