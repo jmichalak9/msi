@@ -10,4 +10,8 @@
     <ProjectReference Include="..\FuzzySetLib\FuzzySetLib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Examples\" />
+  </ItemGroup>
+
 </Project>
