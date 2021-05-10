@@ -11,6 +11,14 @@ namespace FuzzySetLib
     }
     public class Approximations
     {
+        public static float[,] FuzzyRelationBasedApproximation(Func<float, float, float> norm, Func<float, float, float> impl,
+            Func<Bounds[,], Bounds[,], float[,]> dist, float[,] Q, float[,] R)
+        {
+            var objectBounds = ObjectBoundApproximation(norm, impl, Q, R);
+            var propertyBounds = PropertyBoundApproximation(norm, impl, Q, R);
+
+            return dist(objectBounds, propertyBounds);
+        }
 
         public static Bounds[,] ObjectBoundApproximation(Func<float,float,float> norm, Func<float,float,float> impl, float[,] Q, float[,] R)
         {

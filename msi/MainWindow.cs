@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace msi
 {
     public partial class MainWindow : Form
     {
-        private string ExamplesPath { get 
+        private string ExamplesPath
+        {
+            get
             {
                 string path = Application.StartupPath;
                 int x = path.LastIndexOf("\\");
@@ -237,7 +235,7 @@ namespace msi
                         streamWriter.Close();
                         MessageBox.Show("Zapisano pomyślnie");
                     }
-                    catch (Exception exp)
+                    catch
                     {
                         MessageBox.Show("Nie udało się zapisać");
                         return;
@@ -331,7 +329,7 @@ namespace msi
                     CurrentEditedData.Q.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex] = oldData;
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return;
             }
@@ -342,7 +340,7 @@ namespace msi
             DataGridView dataGrid = (DataGridView)sender;
             var oldData = CurrentEditedData.R.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex];
             try
-            { 
+            {
                 float value = float.Parse((string)dataGrid.CurrentCell.Value);
                 if (value >= 0 && value <= 1)
                 {
@@ -361,7 +359,7 @@ namespace msi
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(CurrentEditedData.Name))
+            if (string.IsNullOrEmpty(CurrentEditedData.Name))
             {
                 MessageBox.Show("Data name can not be empty");
                 return;
@@ -387,7 +385,7 @@ namespace msi
 
         private void EditPage_Enter(object sender, EventArgs e)
         {
-            if(SelectedData != null)
+            if (SelectedData != null)
             {
                 CurrentEditedData = SelectedData.Clone();
             }
@@ -496,7 +494,7 @@ namespace msi
             }
             Button button = (Button)sender;
             try
-            { 
+            {
                 EditRowNameForSet(CurrentEditedData.Q, SelectedCandidate.Text, CandidateTextBox.Text);
             }
             catch (Exception exp)
@@ -520,7 +518,7 @@ namespace msi
                 return;
             }
             Button button = (Button)sender;
-            try 
+            try
             {
                 EditRowNameForSet(CurrentEditedData.R, SelectedJobPosition.Text, JobPositionTextBox.Text);
             }
@@ -561,7 +559,7 @@ namespace msi
                 EditColumnNameForSet(CurrentEditedData.R, SelectedSkill.Text, SkillTextBox.Text);
                 EditColumnNameForSet(CurrentEditedData.Q, SelectedSkill.Text, SkillTextBox.Text);
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 MessageBox.Show(exp.Message);
             }
@@ -588,7 +586,7 @@ namespace msi
                 return;
             }
             try
-            { 
+            {
                 AddRowToSet(CurrentEditedData.Q, CandidateTextBox.Text);
             }
             catch (Exception exp)
@@ -610,7 +608,7 @@ namespace msi
             {
                 AddRowToSet(CurrentEditedData.R, JobPositionTextBox.Text);
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 MessageBox.Show(exp.Message);
             }
@@ -621,7 +619,7 @@ namespace msi
         private void AddRowToSet(InputSet set, string newRowName)
         {
             List<string> rowNames = set.RowNames.ToList();
-            if(rowNames.Contains(newRowName))
+            if (rowNames.Contains(newRowName))
             {
                 throw new Exception("This row name already exists");
             }
