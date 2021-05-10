@@ -47,20 +47,13 @@ namespace FuzzySetLibTests
                 {0.40f, 0.27f, 0.35f, 0.35f }
             };
 
-            var result = Distances.HammingDistance(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
+            var result = Distances.HammingSetDistance(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
 
-            for(int i=0;i<result.GetLength(0);i++)
-            {
-                for(int j=0;j<result.GetLength(1);j++)
-                {
-                    Assert.Equal(exp[i, j], result[i, j], _precision);
-                }
-            }
-
+            AssertSetsEqual(exp, result);
         }
 
         [Fact]
-        public void EuclideanDistance()
+        public void EuclideanDistanceTest()
         {
             var Q = new float[,]
             {
@@ -88,13 +81,21 @@ namespace FuzzySetLibTests
                 { 0.46f, 0.36f, 0.43f, 0.39f }
             };
 
-            var result = Distances.EuclideanDistance(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
+            var result = Distances.EuclideanSetDistance(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
 
-            for (int i = 0; i < result.GetLength(0); i++)
+            AssertSetsEqual(exp, result);
+        }
+
+        private void AssertSetsEqual(float[,] exp, float[,] act)
+        {
+            Assert.Equal(exp.GetLength(0), act.GetLength(0));
+            Assert.Equal(exp.GetLength(1), act.GetLength(1));
+
+            for (int i = 0; i < exp.GetLength(0); i++)
             {
-                for (int j = 0; j < result.GetLength(1); j++)
+                for (int j = 0; j < exp.GetLength(1); j++)
                 {
-                    Assert.Equal(exp[i, j], result[i, j], _precision);
+                    Assert.Equal(exp[i, j], act[i, j], _precision);
                 }
             }
         }

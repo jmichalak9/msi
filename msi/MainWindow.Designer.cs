@@ -1270,7 +1270,6 @@ namespace msi
         private System.Windows.Forms.Button EditDataButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.DataGridView RSetDataGrid;
-        private System.Windows.Forms.Label RQSetLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button CalculateButton;
