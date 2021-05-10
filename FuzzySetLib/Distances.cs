@@ -8,12 +8,9 @@ namespace FuzzySetLib
 {
     public class Distances
     {
-        public static float[,] HammingSetDistance(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q, float[,] R)
+        public static float[,] HammingSetDistance(Bounds[,] objectBounds, Bounds[,] propertyBounds)
         {
-            float[,] distances = new float[Q.GetLength(0), R.GetLength(0)];
-
-            var objectBounds = Approximations.ObjectBoundApproximation(norm, impl, Q, R);
-            var propertyBounds = Approximations.PropertyBoundApproximation(norm, impl, Q, R);
+            float[,] distances = new float[propertyBounds.GetLength(0), objectBounds.GetLength(0)];
 
             for (int i = 0; i < distances.GetLength(0); i++)
             {
@@ -30,12 +27,9 @@ namespace FuzzySetLib
             return distances;
         }
 
-        public static float[,] EuclideanSetDistance(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q, float[,] R)
+        public static float[,] EuclideanSetDistance(Bounds[,] objectBounds, Bounds[,] propertyBounds)
         {
-            float[,] distances = new float[Q.GetLength(0), R.GetLength(0)];
-
-            var objectBounds = Approximations.ObjectBoundApproximation(norm, impl, Q, R);
-            var propertyBounds = Approximations.PropertyBoundApproximation(norm, impl, Q, R);
+            float[,] distances = new float[propertyBounds.GetLength(0), objectBounds.GetLength(0)];
 
             for (int i = 0; i < distances.GetLength(0); i++)
             {

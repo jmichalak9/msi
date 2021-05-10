@@ -47,7 +47,10 @@ namespace FuzzySetLibTests
                 {0.40f, 0.27f, 0.35f, 0.35f }
             };
 
-            var result = Distances.HammingSetDistance(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
+            var objectBounds = Approximations.ObjectBoundApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
+            var propertyBounds = Approximations.PropertyBoundApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
+
+            var result = Distances.HammingSetDistance(objectBounds, propertyBounds);
 
             AssertSetsEqual(exp, result);
         }
@@ -81,7 +84,10 @@ namespace FuzzySetLibTests
                 { 0.46f, 0.36f, 0.43f, 0.39f }
             };
 
-            var result = Distances.EuclideanSetDistance(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
+            var objectBounds = Approximations.ObjectBoundApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
+            var propertyBounds = Approximations.PropertyBoundApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
+
+            var result = Distances.EuclideanSetDistance(objectBounds, propertyBounds);
 
             AssertSetsEqual(exp, result);
         }
