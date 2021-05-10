@@ -21,21 +21,22 @@ namespace FuzzySetLibTests
         [Fact]
         public void HammingDistanceTest()
         {
-            var Q = new float[,]
+            var pR = new Bounds[,]
             {
-                  { 0.4f, 0.3f, 0.1f, 0.4f, 0.1f },
-                  { 0.7f, 0.1f, 0.0f, 0.7f, 0.1f },
-                  { 0.3f, 0.6f, 0.2f, 0.2f, 0.1f },
-                  { 0.1f, 0.2f, 0.8f, 0.2f, 0.2f },
-                  { 0.1f, 0.0f, 0.2f, 0.2f, 0.8f },
+                  { b(0.6f, 0.8f), b(0.6f, 0.6f), b(0.2f,0.2f), b(0.6f, 0.8f), b(0.1f, 0.2f) },
+                  { b(0.0f, 0.3f), b(0.3f, 0.4f), b(0.6f,0.6f), b(0.0f, 0.3f), b(0.1f, 0.2f) },
+                  { b(0.2f, 0.8f), b(0.4f, 0.8f), b(0.0f,0.2f), b(0.2f, 0.8f), b(0.0f, 0.2f) },
+                  { b(0.6f, 0.7f), b(0.5f, 0.5f), b(0.3f,0.3f), b(0.6f, 0.7f), b(0.3f, 0.3f) }
+
             };
 
-            var R = new float[,]
+            var cQ = new Bounds[,]
             {
-                  { 0.8f, 0.6f, 0.2f, 0.6f, 0.1f },
-                  { 0.0f, 0.4f, 0.6f, 0.1f, 0.1f },
-                  { 0.8f, 0.8f, 0.0f, 0.2f, 0.0f },
-                  { 0.6f, 0.5f, 0.3f, 0.7f, 0.3f },
+                  { b(0.4f, 0.4f), b(0.3f, 0.4f), b(0.1f,0.2f), b(0.4f, 0.4f), b(0.1f, 0.2f) },
+                  { b(0.7f, 0.7f), b(0.1f, 0.4f), b(0.0f,0.2f), b(0.7f, 0.7f), b(0.1f, 0.2f) },
+                  { b(0.3f, 0.3f), b(0.6f, 0.6f), b(0.2f,0.2f), b(0.2f, 0.3f), b(0.1f, 0.2f) },
+                  { b(0.1f, 0.3f), b(0.2f, 0.4f), b(0.8f,0.8f), b(0.2f, 0.3f), b(0.2f, 0.2f) },
+                  { b(0.1f, 0.3f), b(0.0f, 0.4f), b(0.2f,0.2f), b(0.2f, 0.3f), b(0.8f, 0.8f) },
             };
 
             var exp = new float[,]
@@ -47,10 +48,7 @@ namespace FuzzySetLibTests
                 {0.40f, 0.27f, 0.35f, 0.35f }
             };
 
-            var objectBounds = Approximations.ObjectBoundApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
-            var propertyBounds = Approximations.PropertyBoundApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
-
-            var result = Distances.HammingSetDistance(objectBounds, propertyBounds);
+            var result = Distances.HammingSetDistance(pR, cQ);
 
             AssertSetsEqual(exp, result);
         }
@@ -58,21 +56,22 @@ namespace FuzzySetLibTests
         [Fact]
         public void EuclideanDistanceTest()
         {
-            var Q = new float[,]
+            var pR = new Bounds[,]
             {
-                  { 0.4f, 0.3f, 0.1f, 0.4f, 0.1f },
-                  { 0.7f, 0.1f, 0.0f, 0.7f, 0.1f },
-                  { 0.3f, 0.6f, 0.2f, 0.2f, 0.1f },
-                  { 0.1f, 0.2f, 0.8f, 0.2f, 0.2f },
-                  { 0.1f, 0.0f, 0.2f, 0.2f, 0.8f },
+                  { b(0.6f, 0.8f), b(0.6f, 0.6f), b(0.2f,0.2f), b(0.6f, 0.8f), b(0.1f, 0.2f) },
+                  { b(0.0f, 0.3f), b(0.3f, 0.4f), b(0.6f,0.6f), b(0.0f, 0.3f), b(0.1f, 0.2f) },
+                  { b(0.2f, 0.8f), b(0.4f, 0.8f), b(0.0f,0.2f), b(0.2f, 0.8f), b(0.0f, 0.2f) },
+                  { b(0.6f, 0.7f), b(0.5f, 0.5f), b(0.3f,0.3f), b(0.6f, 0.7f), b(0.3f, 0.3f) }
+
             };
 
-            var R = new float[,]
+            var cQ = new Bounds[,]
             {
-                  { 0.8f, 0.6f, 0.2f, 0.6f, 0.1f },
-                  { 0.0f, 0.4f, 0.6f, 0.1f, 0.1f },
-                  { 0.8f, 0.8f, 0.0f, 0.2f, 0.0f },
-                  { 0.6f, 0.5f, 0.3f, 0.7f, 0.3f },
+                  { b(0.4f, 0.4f), b(0.3f, 0.4f), b(0.1f,0.2f), b(0.4f, 0.4f), b(0.1f, 0.2f) },
+                  { b(0.7f, 0.7f), b(0.1f, 0.4f), b(0.0f,0.2f), b(0.7f, 0.7f), b(0.1f, 0.2f) },
+                  { b(0.3f, 0.3f), b(0.6f, 0.6f), b(0.2f,0.2f), b(0.2f, 0.3f), b(0.1f, 0.2f) },
+                  { b(0.1f, 0.3f), b(0.2f, 0.4f), b(0.8f,0.8f), b(0.2f, 0.3f), b(0.2f, 0.2f) },
+                  { b(0.1f, 0.3f), b(0.0f, 0.4f), b(0.2f,0.2f), b(0.2f, 0.3f), b(0.8f, 0.8f) },
             };
 
             var exp = new float[,]
@@ -84,10 +83,7 @@ namespace FuzzySetLibTests
                 { 0.46f, 0.36f, 0.43f, 0.39f }
             };
 
-            var objectBounds = Approximations.ObjectBoundApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
-            var propertyBounds = Approximations.PropertyBoundApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
-
-            var result = Distances.EuclideanSetDistance(objectBounds, propertyBounds);
+            var result = Distances.EuclideanSetDistance(pR, cQ);
 
             AssertSetsEqual(exp, result);
         }
@@ -104,6 +100,15 @@ namespace FuzzySetLibTests
                     Assert.Equal(exp[i, j], act[i, j], _precision);
                 }
             }
+        }
+
+        private Bounds b(float x, float y)
+        {
+            return new Bounds
+            {
+                upper = y,
+                lower = x
+            };
         }
     }
 }
