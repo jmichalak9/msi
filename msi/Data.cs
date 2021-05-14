@@ -11,13 +11,13 @@ namespace msi
     {
         public Data()
         {
-            Q = new InputSet();
-            R = new InputSet();
+            Q = new InputSet<float>();
+            R = new InputSet<float>();
         }
         public int Number { get; set; }
         public string Name { get; set; }
-        public InputSet Q { get; set; }
-        public InputSet R { get; set; }
+        public InputSet<float> Q { get; set; }
+        public InputSet<float> R { get; set; }
 
         public Data Clone()
         {

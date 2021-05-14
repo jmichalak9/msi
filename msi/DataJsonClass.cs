@@ -47,7 +47,7 @@ namespace msi
                     QNumbers[i, j] = data.CandidatesRates[i][j];
                 }
             }
-            InputSet Q = new InputSet
+            InputSet<float> Q = new InputSet<float>
             {
                 ColNames = data.Skills.ToArray(),
                 RowNames = data.Candidates.ToArray(),
@@ -61,7 +61,7 @@ namespace msi
                     RNumbers[i, j] = data.JobPositionsRates[i][j];
                 }
             }
-            InputSet R = new InputSet
+            InputSet<float> R = new InputSet<float>
             {
                 ColNames = data.Skills.ToArray(),
                 RowNames = data.JobPositions.ToArray(),

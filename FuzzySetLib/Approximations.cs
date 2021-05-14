@@ -9,27 +9,19 @@ namespace FuzzySetLib
     {
         public float lower;
         public float upper;
+
+        public override string ToString()
+        {
+            return "(" + Math.Round(upper,3).ToString() + "; " + Math.Round(lower,3).ToString() + ")";
+        }
     }
     public class Approximations
     {
         public static float[,] FuzzyRelationBasedApproximation(Func<float, float, float> norm, Func<float, float, float> impl,
-            Func<Bounds[,], Bounds[,], float[,]> dist, float[,] Q, float[,] R)
+            Func<Bounds[,], Bounds[,], float[,]> dist, float[,] Q, float[,] R, out Bounds[,] objectBounds, out Bounds[,] propertyBounds)
         {
-            var objectBounds = ObjectBoundApproximation(norm, impl, Q, R);
-
-            var propertyBounds = PropertyBoundApproximation(norm, impl, Q, R);
-
-            objectBounds = propertyBounds;
-
-            //DEBUG
-            Debug.WriteLine("");
-            for (int i = 0; i < objectBounds.GetLength(0); i++)
-            {
-                for (int j = 0; j < objectBounds.GetLength(1); j++)
-                    Debug.Write($"({objectBounds[i, j].lower}, {objectBounds[i, j].upper}); ");
-                Debug.WriteLine("");
-            }
-            Debug.WriteLine("");
+            objectBounds = ObjectBoundApproximation(norm, impl, Q, R);
+            propertyBounds = PropertyBoundApproximation(norm, impl, Q, R);
 
             return dist(objectBounds, propertyBounds);
         }

@@ -34,7 +34,7 @@ namespace msi
         private Data CurrentEditedData = new Data();
         private Data SelectedData = null;
         private List<Data> Sets = new List<Data>();
-        private void DisplayDataGridView(InputSet set, DataGridView dataGrid)
+        private void DisplayDataGridView<T>(InputSet<T> set, DataGridView dataGrid)
         {
             if (set.ColCount == 0) return;
             for (int i = 0; i < set.ColCount; i++)
@@ -423,7 +423,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void RemoveRowFormSet(InputSet set, string rowName)
+        private void RemoveRowFormSet(InputSet<float> set, string rowName)
         {
             List<string> jobPositions = set.RowNames.ToList();
             int index = jobPositions.IndexOf(rowName);
@@ -459,7 +459,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void RemoveColumnFromSet(InputSet set, string columnName)
+        private void RemoveColumnFromSet(InputSet<float> set, string columnName)
         {
             List<string> colNames = set.ColNames.ToList();
             int index = colNames.IndexOf(columnName);
@@ -531,7 +531,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void EditRowNameForSet(InputSet set, string rowName, string newRowName)
+        private void EditRowNameForSet(InputSet<float> set, string rowName, string newRowName)
         {
             List<string> rowNames = set.RowNames.ToList();
             if (rowNames.Contains(newRowName))
@@ -568,7 +568,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void EditColumnNameForSet(InputSet set, string columnName, string newColumnName)
+        private void EditColumnNameForSet(InputSet<float> set, string columnName, string newColumnName)
         {
             List<string> colNames = set.ColNames.ToList();
             if (colNames.Contains(newColumnName))
@@ -617,7 +617,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void AddRowToSet(InputSet set, string newRowName)
+        private void AddRowToSet(InputSet<float> set, string newRowName)
         {
             List<string> rowNames = set.RowNames.ToList();
             if (rowNames.Contains(newRowName))
@@ -657,7 +657,7 @@ namespace msi
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void AddColumnToSet(InputSet set, string newColumnName)
+        private void AddColumnToSet(InputSet<float> set, string newColumnName)
         {
             List<string> colNames = set.ColNames.ToList();
             if (colNames.Contains(newColumnName))
@@ -677,6 +677,20 @@ namespace msi
             set.Numbers = array;
         }
 
+        private string[,] BoundsToStrings(Bounds[,] bounds)
+        {
+            var result = new string[bounds.GetLength(0), bounds.GetLength(1)];
+            for(int i=0;i<bounds.GetLength(0);i++)
+            {
+                for(int j=0;j<bounds.GetLength(1);j++)
+                {
+                    result[i, j] = bounds[i, j].ToString();
+                }
+            }
+
+            return result;
+        }
+
         private void CalculateButton_Click(object sender, EventArgs e)
         {
             if (SelectedData == null)
@@ -689,19 +703,38 @@ namespace msi
             float[,] Q = SelectedData.R.Numbers;
             float[,] R = SelectedData.Q.Numbers;
 
-            float[,] result = Approximations.FuzzyRelationBasedApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Distances.HammingSetDistance, Q, R);
+            Bounds[,] objectBounds, propertyBounds;
 
-            var colNames = SelectedData.Q.RowNames;
-            var rowNames = SelectedData.R.RowNames;
+            float[,] result = Approximations.FuzzyRelationBasedApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz,
+                Distances.HammingSetDistance, Q, R, out objectBounds, out propertyBounds);
 
-            InputSet resultSet = new InputSet
+            var colNames = SelectedData.R.RowNames;
+            var rowNames = SelectedData.Q.RowNames;
+
+            InputSet<float> resultSet = new InputSet<float>
             {
                 Numbers = result,
                 ColNames = colNames,
                 RowNames = rowNames
             };
 
+            InputSet<string> objectBundsSet = new InputSet<string>
+            {
+                Numbers = BoundsToStrings(objectBounds),
+                ColNames = SelectedData.Q.ColNames,
+                RowNames = SelectedData.Q.RowNames
+            };
+
+            InputSet<string> propertyBoundsSet = new InputSet<string>
+            {
+                Numbers = BoundsToStrings(propertyBounds),
+                ColNames = SelectedData.R.ColNames,
+                RowNames = SelectedData.R.RowNames
+            };
+
             DisplayDataGridView(resultSet, ThirdStep);
+            DisplayDataGridView(objectBundsSet, SecondStep);
+            DisplayDataGridView(propertyBoundsSet, FirstStepSet);
         }
     }
 }
