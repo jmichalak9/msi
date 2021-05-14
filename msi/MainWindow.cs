@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FuzzySetLib;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -674,6 +675,33 @@ namespace msi
                 }
             }
             set.Numbers = array;
+        }
+
+        private void CalculateButton_Click(object sender, EventArgs e)
+        {
+            if (SelectedData == null)
+            {
+                MessageBox.Show("Fill data table");
+                return;
+            }
+
+            // Odwrotne oznaczenia ?
+            float[,] Q = SelectedData.R.Numbers;
+            float[,] R = SelectedData.Q.Numbers;
+
+            float[,] result = Approximations.FuzzyRelationBasedApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Distances.HammingSetDistance, Q, R);
+
+            var colNames = SelectedData.Q.RowNames;
+            var rowNames = SelectedData.R.RowNames;
+
+            InputSet resultSet = new InputSet
+            {
+                Numbers = result,
+                ColNames = colNames,
+                RowNames = rowNames
+            };
+
+            DisplayDataGridView(resultSet, ThirdStep);
         }
     }
 }
