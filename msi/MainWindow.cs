@@ -55,25 +55,24 @@ namespace msi
 
         private void MainWindowLoadData(Data data)
         {
-            ClearMainWindowDataGrids();
+            ClearDataGridView(QSetDataGrid);
+            ClearDataGridView(RSetDataGrid);
             if (data == null) return;
             DisplayDataGridView(data.Q, QSetDataGrid);
             DisplayDataGridView(data.R, RSetDataGrid);
         }
 
-        private void ClearMainWindowDataGrids()
+        private void ClearDataGridView(DataGridView dataGrid)
         {
-            QSetDataGrid.DataSource = null;
-            QSetDataGrid.Rows.Clear();
-            QSetDataGrid.Columns.Clear();
-            RSetDataGrid.DataSource = null;
-            RSetDataGrid.Rows.Clear();
-            RSetDataGrid.Columns.Clear();
+            dataGrid.DataSource = null;
+            dataGrid.Columns.Clear();
+            dataGrid.Rows.Clear();
         }
 
         private void EditWindowLoadData(Data data)
         {
-            ClearEditWindowDataGrids();
+            ClearDataGridView(QSetEdit);
+            ClearDataGridView(RSetEdit);
             ClearEditWindowPanels();
             if (data == null) return;
             NameEditTextBox.Text = data.Name;
@@ -155,16 +154,6 @@ namespace msi
             JobPositionLayoutPanel.Controls.Clear();
             CandidateLayoutPanel.Controls.Clear();
             SkillLayoutPanel.Controls.Clear();
-        }
-
-        private void ClearEditWindowDataGrids()
-        {
-            QSetEdit.DataSource = null;
-            QSetEdit.Rows.Clear();
-            QSetEdit.Columns.Clear();
-            RSetEdit.DataSource = null;
-            RSetEdit.Rows.Clear();
-            RSetEdit.Columns.Clear();
         }
 
         public MainWindow()
@@ -691,6 +680,20 @@ namespace msi
             return result;
         }
 
+        private float[,] RoundFloats(float[,] tab)
+        {
+            var result = new float[tab.GetLength(0), tab.GetLength(1)];
+            for (int i = 0; i < tab.GetLength(0); i++)
+            {
+                for (int j = 0; j < tab.GetLength(1); j++)
+                {
+                    result[i, j] = (float)Math.Round(tab[i, j], 3);
+                }
+            }
+
+            return result;
+        }
+
         private void CalculateButton_Click(object sender, EventArgs e)
         {
             if (SelectedData == null)
@@ -699,37 +702,35 @@ namespace msi
                 return;
             }
 
-            // Odwrotne oznaczenia ?
-            float[,] Q = SelectedData.R.Numbers;
-            float[,] R = SelectedData.Q.Numbers;
+            float[,] Q = SelectedData.Q.Numbers; //kandydaci
+            float[,] R = SelectedData.R.Numbers; //stanowiska
 
             Bounds[,] objectBounds, propertyBounds;
 
             float[,] result = Approximations.FuzzyRelationBasedApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz,
                 Distances.HammingSetDistance, Q, R, out objectBounds, out propertyBounds);
 
-            var colNames = SelectedData.R.RowNames;
-            var rowNames = SelectedData.Q.RowNames;
+            result = RoundFloats(result);
 
             InputSet<float> resultSet = new InputSet<float>
             {
                 Numbers = result,
-                ColNames = colNames,
-                RowNames = rowNames
+                ColNames = SelectedData.Q.RowNames,
+                RowNames = SelectedData.R.RowNames
             };
 
             InputSet<string> objectBundsSet = new InputSet<string>
             {
                 Numbers = BoundsToStrings(objectBounds),
-                ColNames = SelectedData.Q.ColNames,
-                RowNames = SelectedData.Q.RowNames
+                ColNames = SelectedData.R.ColNames,
+                RowNames = SelectedData.R.RowNames
             };
 
             InputSet<string> propertyBoundsSet = new InputSet<string>
             {
                 Numbers = BoundsToStrings(propertyBounds),
-                ColNames = SelectedData.R.ColNames,
-                RowNames = SelectedData.R.RowNames
+                ColNames = SelectedData.Q.ColNames,
+                RowNames = SelectedData.Q.RowNames
             };
 
             DisplayDataGridView(resultSet, ThirdStep);
