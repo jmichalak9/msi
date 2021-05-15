@@ -34,22 +34,16 @@ namespace msi
         private Data CurrentEditedData = new Data();
         private Data SelectedData = null;
         private List<Data> Sets = new List<Data>();
-        private int precision = 3;
         private void DisplayDataGridView<T>(InputSet<T> set, DataGridView dataGrid)
         {
-            if (set.ColCount == 0)
-                return;
-
+            ClearDataGridView(dataGrid);
+            if (set.ColCount == 0) return;
             for (int i = 0; i < set.ColCount; i++)
             {
                 dataGrid.Columns.Add(i.ToString(), set.ColNames[i]);
             }
-
-            if (set.RowCount == 0)
-                return;
-
+            if (set.RowCount == 0) return;
             dataGrid.Rows.Add(set.RowCount);
-            
             for (int i = 0; i < set.RowCount; i++)
             {
                 dataGrid.Rows[i].HeaderCell.Value = set.RowNames[i];
@@ -58,8 +52,6 @@ namespace msi
                     dataGrid.Rows[i].Cells[j].Value = set.Numbers[i, j];
                 }
             }
-            dataGrid.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
-
         }
 
         private void MainWindowLoadData(Data data)
@@ -168,6 +160,8 @@ namespace msi
         public MainWindow()
         {
             InitializeComponent();
+            LoadDataFromPath(ExamplesPath + "\\Example");
+            LoadDataFromPath(ExamplesPath + "\\Medyczny");
             LoadDataFromPath(ExamplesPath + "\\Przyklad1");
         }
 
@@ -678,9 +672,9 @@ namespace msi
         private string[,] BoundsToStrings(Bounds[,] bounds)
         {
             var result = new string[bounds.GetLength(0), bounds.GetLength(1)];
-            for (int i = 0; i < bounds.GetLength(0); i++)
+            for(int i=0;i<bounds.GetLength(0);i++)
             {
-                for (int j = 0; j < bounds.GetLength(1); j++)
+                for(int j=0;j<bounds.GetLength(1);j++)
                 {
                     result[i, j] = bounds[i, j].ToString();
                 }
@@ -696,59 +690,7 @@ namespace msi
             {
                 for (int j = 0; j < tab.GetLength(1); j++)
                 {
-                    result[i, j] = (float)Math.Round(tab[i, j], precision);
-                }
-            }
-
-            return result;
-        }
-
-        // x < y -> -1
-        // x == y -> 0
-        // x > y -> 1
-        private int CompareFloats(float x, float y)
-        {
-            int xi = (int)(x * Math.Pow(10, precision));
-            int yi = (int)(y * Math.Pow(10, precision));
-
-            if (xi < yi)
-            {
-                return -1;
-            }
-            else if (xi == yi)
-            {
-                return 0;
-            }
-            else
-            {
-                return 1;
-            }
-
-        }
-
-        private string[,] ChooseBest(float[,] distances, string[] candidates)
-        {
-            string[,] result = new string[1, distances.GetLength(0)];
-
-            for (int i = 0; i < distances.GetLength(0); i++)
-            {
-                string bests = candidates[0];
-                float min = distances[i, 0];
-
-                for (int j = 1; j < distances.GetLength(1); j++)
-                {
-                    int cmp = CompareFloats(min, distances[i, j]);
-                    if (cmp == 1)
-                    {
-                        min = distances[i, j];
-                        bests = candidates[j];
-                    }
-                    else if (cmp == 0)
-                    {
-                        bests += ", " + candidates[j];
-                    }
-
-                    result[0, i] = bests;
+                    result[i, j] = (float)Math.Round(tab[i, j], 3);
                 }
             }
 
@@ -768,14 +710,14 @@ namespace msi
 
             Bounds[,] objectBounds, propertyBounds;
 
-            float[,] distances = Approximations.FuzzyRelationBasedApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz,
-                Distances.HammingSetDistance, Q, R, out objectBounds, out propertyBounds);
+            float[,] result = Approximations.FuzzyRelationBasedApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz,
+                Distances.EuclideanSetDistance, Q, R, out objectBounds, out propertyBounds);
 
-            distances = RoundFloats(distances);
+            result = RoundFloats(result);
 
-            InputSet<float> distancesSet = new InputSet<float>
+            InputSet<float> resultSet = new InputSet<float>
             {
-                Numbers = distances,
+                Numbers = result,
                 ColNames = SelectedData.Q.RowNames,
                 RowNames = SelectedData.R.RowNames
             };
@@ -794,21 +736,9 @@ namespace msi
                 RowNames = SelectedData.Q.RowNames
             };
 
-            DisplayDataGridView(distancesSet, ThirdStep);
-            DisplayDataGridView(objectBundsSet, SecondStep);
-            DisplayDataGridView(propertyBoundsSet, FirstStepSet);
-
-            InputSet<string> resultsSet = new InputSet<string>
-            {
-                Numbers = ChooseBest(distances, SelectedData.Q.RowNames),
-                RowNames = new string[]
-                {
-                    "Best Candidates"
-                },
-                ColNames = SelectedData.R.RowNames
-            };
-
-            DisplayDataGridView(resultsSet, Result);
+            DisplayDataGridView(resultSet, ThirdStep);
+            DisplayDataGridView(objectBundsSet, FirstStepSet);
+            DisplayDataGridView(propertyBoundsSet, SecondStep);
         }
     }
 }

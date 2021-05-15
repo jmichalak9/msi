@@ -15,10 +15,13 @@ namespace FuzzySetLib
                 return 1;
             return y;
         }
-        public static float KleeneDienes(float x, float y)
+		
+        public static float GoguenGaines(float x, float y)
         {
             CheckImplArguments(x, y);
-            return Math.Max(1 - x, y);
+            if (x <= y)
+                return 1;
+            return y/x;
         }
 
         public static float Lukasiewicz(float x, float y)
