@@ -31,10 +31,10 @@ namespace msi
         private Button SelectedJobPosition = null;
         private Button SelectedSkill = null;
         private int LastDataNr = 0;
-        private Data CurrentEditedData = new Data();
+        private Data CurrentEditedData = new();
         private Data SelectedData = null;
-        private List<Data> Sets = new List<Data>();
-        private int precision = 3;
+        private List<Data> Sets = new();
+        private readonly int precision = 3;
 
         Func<float, float, float> norm = Norms.Lukasiewicz;
         Func<float, float, float> impl = Implications.Lukasiewicz;
@@ -45,15 +45,15 @@ namespace msi
             ClearDataGridView(dataGrid);
             if (set.ColCount == 0)
                 return;
-            
+
             for (int i = 0; i < set.ColCount; i++)
             {
                 dataGrid.Columns.Add(i.ToString(), set.ColNames[i]);
             }
-            
+
             if (set.RowCount == 0)
                 return;
-            
+
             dataGrid.Rows.Add(set.RowCount);
             for (int i = 0; i < set.RowCount; i++)
             {
@@ -100,10 +100,13 @@ namespace msi
         {
             foreach (string rowname in data.R.RowNames)
             {
-                Button newButton = new Button();
-                newButton.Name = $"jobposition{rowname}";
-                newButton.Text = rowname;
-                newButton.Size = new Size(90, 23);
+                Button newButton = new()
+                {
+                    Name = $"jobposition{rowname}",
+                    Text = rowname,
+                    Size = new Size(90, 23)
+                };
+
                 newButton.Click += (object sender, EventArgs e) =>
                 {
                     SelectedJobPosition = (Button)sender;
@@ -122,10 +125,13 @@ namespace msi
         {
             foreach (string rowname in data.Q.RowNames)
             {
-                Button newButton = new Button();
-                newButton.Name = $"candidate{rowname}";
-                newButton.Text = rowname;
-                newButton.Size = new Size(90, 23);
+                Button newButton = new()
+                {
+                    Name = $"candidate{rowname}",
+                    Text = rowname,
+                    Size = new Size(90, 23)
+                };
+
                 newButton.Click += (object sender, EventArgs e) =>
                 {
                     SelectedCandidate = (Button)sender;
@@ -144,10 +150,13 @@ namespace msi
         {
             foreach (string colname in data.Q.ColNames)
             {
-                Button newButton = new Button();
-                newButton.Name = $"skill{colname}";
-                newButton.Text = colname;
-                newButton.Size = new Size(90, 23);
+                Button newButton = new()
+                {
+                    Name = $"skill{colname}",
+                    Text = colname,
+                    Size = new Size(90, 23)
+                };
+
                 newButton.Click += (object sender, EventArgs e) =>
                 {
                     SelectedSkill = (Button)sender;
@@ -220,7 +229,7 @@ namespace msi
                 return;
             }
             Stream newStream;
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            SaveFileDialog saveFileDialog = new();
 
             string path = ExamplesPath;
             saveFileDialog.Filter = "all files (*.*)|*.*";
@@ -235,7 +244,7 @@ namespace msi
                     try
                     {
                         var serivalizedScene = JsonSerializer.Serialize((DataJsonClass)SelectedData);
-                        StreamWriter streamWriter = new StreamWriter(newStream);
+                        StreamWriter streamWriter = new(newStream);
                         streamWriter.Write(serivalizedScene);
                         streamWriter.Close();
                         MessageBox.Show("Zapisano pomyślnie", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -252,7 +261,7 @@ namespace msi
 
         private void LoadDataButton_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using (OpenFileDialog openFileDialog = new())
             {
                 string path = ExamplesPath;
                 openFileDialog.Filter = "all files (*.*)|*.*";
@@ -290,10 +299,13 @@ namespace msi
             if (data == null) return;
             data.Number = LastDataNr++;
             Sets.Add(data);
-            Button dataButton = new Button();
-            dataButton.Name = $"data{data.Number}";
-            dataButton.Text = data.Name;
-            dataButton.Size = new Size(143, 23);
+            Button dataButton = new()
+            {
+                Name = $"data{data.Number}",
+                Text = data.Name,
+                Size = new Size(143, 23)
+            };
+
             dataButton.Click += (object sender, EventArgs e) =>
             {
                 Button button = (Button)sender;
@@ -552,7 +564,7 @@ namespace msi
                 MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
+
             try
             {
                 EditColumnNameForSet(CurrentEditedData.R, SelectedSkill.Text, SkillTextBox.Text);
@@ -766,28 +778,26 @@ namespace msi
             float[,] Q = SelectedData.Q.Numbers; //candidates
             float[,] R = SelectedData.R.Numbers; //positions
 
-            Bounds[,] objectBounds, propertyBounds;
-
             float[,] distances = Approximations.FuzzyRelationBasedApproximation(norm, impl, dist, Q, R,
-                out objectBounds, out propertyBounds);
+                out Bounds[,] objectBounds, out Bounds[,] propertyBounds);
 
             distances = RoundFloats(distances);
 
-            InputSet<float> distanceSet = new InputSet<float>
+            InputSet<float> distanceSet = new()
             {
                 Numbers = distances,
                 ColNames = SelectedData.Q.RowNames,
                 RowNames = SelectedData.R.RowNames
             };
 
-            InputSet<string> objectBundsSet = new InputSet<string>
+            InputSet<string> objectBundsSet = new()
             {
                 Numbers = BoundsToStrings(objectBounds),
                 ColNames = SelectedData.R.ColNames,
                 RowNames = SelectedData.R.RowNames
             };
 
-            InputSet<string> propertyBoundsSet = new InputSet<string>
+            InputSet<string> propertyBoundsSet = new()
             {
                 Numbers = BoundsToStrings(propertyBounds),
                 ColNames = SelectedData.Q.ColNames,
@@ -798,7 +808,7 @@ namespace msi
             DisplayDataGridView(objectBundsSet, FirstStepSet);
             DisplayDataGridView(propertyBoundsSet, SecondStep);
 
-            InputSet<string> resultsSet = new InputSet<string>
+            InputSet<string> resultsSet = new()
             {
                 Numbers = ChooseBest(distances, SelectedData.Q.RowNames),
                 RowNames = new string[]
@@ -814,7 +824,7 @@ namespace msi
         private void lukasiewiczRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton button = sender as RadioButton;
-            if(button.Checked)
+            if (button.Checked)
             {
                 norm = Norms.Lukasiewicz;
                 impl = Implications.Lukasiewicz;

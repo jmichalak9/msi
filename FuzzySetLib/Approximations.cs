@@ -21,7 +21,7 @@ namespace FuzzySetLib
             Func<Bounds[,], Bounds[,], float[,]> dist, float[,] Q, float[,] R, out Bounds[,] objectBounds, out Bounds[,] propertyBounds)
         {
             objectBounds = ObjectBoundApproximation(norm, impl, Q, R);
-            propertyBounds = PropertyBoundApproximation(norm, impl, Q, R);
+            propertyBounds = PropertyBoundApproximation(norm, impl, Q);
 
             return dist(objectBounds, propertyBounds);
         }
@@ -47,7 +47,7 @@ namespace FuzzySetLib
             return approx;
         }
         
-        public static Bounds[,] PropertyBoundApproximation(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q, float[,] R)
+        public static Bounds[,] PropertyBoundApproximation(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q)
         {
             var approx = new Bounds[Q.GetLength(0), Q.GetLength(1)];
 
