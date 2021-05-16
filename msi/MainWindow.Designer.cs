@@ -32,8 +32,6 @@ namespace msi
             this.TabControlMenu = new System.Windows.Forms.TabControl();
             this.MainPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.DataListGroupBox = new System.Windows.Forms.GroupBox();
-            this.DataListLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.LoadDataButton = new System.Windows.Forms.Button();
             this.SaveDataButton = new System.Windows.Forms.Button();
@@ -111,10 +109,12 @@ namespace msi
             this.DataScience = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel23 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel30 = new System.Windows.Forms.TableLayoutPanel();
+            this.DataListGroupBox = new System.Windows.Forms.GroupBox();
+            this.DataListLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.TabControlMenu.SuspendLayout();
             this.MainPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.DataListGroupBox.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RSetDataGrid)).BeginInit();
@@ -159,6 +159,8 @@ namespace msi
             this.tableLayoutPanel21.SuspendLayout();
             this.ThirdStepGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ThirdStep)).BeginInit();
+            this.tableLayoutPanel30.SuspendLayout();
+            this.DataListGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControlMenu
@@ -192,10 +194,10 @@ namespace msi
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel1.Controls.Add(this.DataListGroupBox, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel30, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -206,27 +208,6 @@ namespace msi
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 527);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // DataListGroupBox
-            // 
-            this.DataListGroupBox.BackColor = System.Drawing.Color.Transparent;
-            this.DataListGroupBox.Controls.Add(this.DataListLayoutPanel);
-            this.DataListGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataListGroupBox.Location = new System.Drawing.Point(763, 3);
-            this.DataListGroupBox.Name = "DataListGroupBox";
-            this.DataListGroupBox.Size = new System.Drawing.Size(194, 401);
-            this.DataListGroupBox.TabIndex = 0;
-            this.DataListGroupBox.TabStop = false;
-            this.DataListGroupBox.Text = "DataList";
-            // 
-            // DataListLayoutPanel
-            // 
-            this.DataListLayoutPanel.AutoScroll = true;
-            this.DataListLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataListLayoutPanel.Location = new System.Drawing.Point(3, 19);
-            this.DataListLayoutPanel.Name = "DataListLayoutPanel";
-            this.DataListLayoutPanel.Size = new System.Drawing.Size(188, 379);
-            this.DataListLayoutPanel.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
@@ -1205,6 +1186,41 @@ namespace msi
             this.groupBox7.TabIndex = 3;
             this.groupBox7.TabStop = false;
             // 
+            // tableLayoutPanel30
+            // 
+            this.tableLayoutPanel30.ColumnCount = 1;
+            this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel30.Controls.Add(this.DataListGroupBox, 0, 2);
+            this.tableLayoutPanel30.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel30.Location = new System.Drawing.Point(763, 3);
+            this.tableLayoutPanel30.Name = "tableLayoutPanel30";
+            this.tableLayoutPanel30.RowCount = 3;
+            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel30.Size = new System.Drawing.Size(194, 401);
+            this.tableLayoutPanel30.TabIndex = 4;
+            // 
+            // DataListGroupBox
+            // 
+            this.DataListGroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.DataListGroupBox.Controls.Add(this.DataListLayoutPanel);
+            this.DataListGroupBox.Location = new System.Drawing.Point(3, 203);
+            this.DataListGroupBox.Name = "DataListGroupBox";
+            this.DataListGroupBox.Size = new System.Drawing.Size(188, 142);
+            this.DataListGroupBox.TabIndex = 3;
+            this.DataListGroupBox.TabStop = false;
+            this.DataListGroupBox.Text = "DataList";
+            // 
+            // DataListLayoutPanel
+            // 
+            this.DataListLayoutPanel.AutoScroll = true;
+            this.DataListLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataListLayoutPanel.Location = new System.Drawing.Point(3, 19);
+            this.DataListLayoutPanel.Name = "DataListLayoutPanel";
+            this.DataListLayoutPanel.Size = new System.Drawing.Size(182, 120);
+            this.DataListLayoutPanel.TabIndex = 0;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1217,7 +1233,6 @@ namespace msi
             this.TabControlMenu.ResumeLayout(false);
             this.MainPage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.DataListGroupBox.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
@@ -1268,6 +1283,8 @@ namespace msi
             this.tableLayoutPanel21.ResumeLayout(false);
             this.ThirdStepGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ThirdStep)).EndInit();
+            this.tableLayoutPanel30.ResumeLayout(false);
+            this.DataListGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1278,8 +1295,6 @@ namespace msi
         private System.Windows.Forms.TabPage MainPage;
         private System.Windows.Forms.TabPage IndirectCalculationsPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.GroupBox DataListGroupBox;
-        private System.Windows.Forms.FlowLayoutPanel DataListLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button AddNewDataButton;
         private System.Windows.Forms.Button DeleteDataButton;
@@ -1356,6 +1371,9 @@ namespace msi
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel30;
+        private System.Windows.Forms.GroupBox DataListGroupBox;
+        private System.Windows.Forms.FlowLayoutPanel DataListLayoutPanel;
     }
 }
 
