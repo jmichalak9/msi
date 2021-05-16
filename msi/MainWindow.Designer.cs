@@ -49,6 +49,9 @@ namespace msi
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.Result = new System.Windows.Forms.DataGridView();
             this.ResultLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel30 = new System.Windows.Forms.TableLayoutPanel();
+            this.DataListGroupBox = new System.Windows.Forms.GroupBox();
+            this.DataListLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.EditPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
@@ -109,9 +112,13 @@ namespace msi
             this.DataScience = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel23 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel30 = new System.Windows.Forms.TableLayoutPanel();
-            this.DataListGroupBox = new System.Windows.Forms.GroupBox();
-            this.DataListLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.hammingRadioButton = new System.Windows.Forms.RadioButton();
+            this.euclideanRadioButton = new System.Windows.Forms.RadioButton();
+            this.lukasiewiczRadioButton = new System.Windows.Forms.RadioButton();
+            this.productRadioButton = new System.Windows.Forms.RadioButton();
+            this.standardRadioButton = new System.Windows.Forms.RadioButton();
             this.TabControlMenu.SuspendLayout();
             this.MainPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -123,6 +130,8 @@ namespace msi
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Result)).BeginInit();
+            this.tableLayoutPanel30.SuspendLayout();
+            this.DataListGroupBox.SuspendLayout();
             this.EditPage.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -159,8 +168,8 @@ namespace msi
             this.tableLayoutPanel21.SuspendLayout();
             this.ThirdStepGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ThirdStep)).BeginInit();
-            this.tableLayoutPanel30.SuspendLayout();
-            this.DataListGroupBox.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControlMenu
@@ -429,6 +438,44 @@ namespace msi
             this.ResultLabel.Size = new System.Drawing.Size(622, 20);
             this.ResultLabel.TabIndex = 2;
             this.ResultLabel.Text = "Result";
+            // 
+            // tableLayoutPanel30
+            // 
+            this.tableLayoutPanel30.ColumnCount = 1;
+            this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel30.Controls.Add(this.DataListGroupBox, 0, 2);
+            this.tableLayoutPanel30.Controls.Add(this.groupBox9, 0, 0);
+            this.tableLayoutPanel30.Controls.Add(this.groupBox10, 0, 1);
+            this.tableLayoutPanel30.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel30.Location = new System.Drawing.Point(763, 3);
+            this.tableLayoutPanel30.Name = "tableLayoutPanel30";
+            this.tableLayoutPanel30.RowCount = 3;
+            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel30.Size = new System.Drawing.Size(194, 401);
+            this.tableLayoutPanel30.TabIndex = 4;
+            // 
+            // DataListGroupBox
+            // 
+            this.DataListGroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.DataListGroupBox.Controls.Add(this.DataListLayoutPanel);
+            this.DataListGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataListGroupBox.Location = new System.Drawing.Point(3, 203);
+            this.DataListGroupBox.Name = "DataListGroupBox";
+            this.DataListGroupBox.Size = new System.Drawing.Size(188, 195);
+            this.DataListGroupBox.TabIndex = 3;
+            this.DataListGroupBox.TabStop = false;
+            this.DataListGroupBox.Text = "DataList";
+            // 
+            // DataListLayoutPanel
+            // 
+            this.DataListLayoutPanel.AutoScroll = true;
+            this.DataListLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataListLayoutPanel.Location = new System.Drawing.Point(3, 19);
+            this.DataListLayoutPanel.Name = "DataListLayoutPanel";
+            this.DataListLayoutPanel.Size = new System.Drawing.Size(182, 173);
+            this.DataListLayoutPanel.TabIndex = 0;
             // 
             // EditPage
             // 
@@ -1186,40 +1233,84 @@ namespace msi
             this.groupBox7.TabIndex = 3;
             this.groupBox7.TabStop = false;
             // 
-            // tableLayoutPanel30
+            // groupBox9
             // 
-            this.tableLayoutPanel30.ColumnCount = 1;
-            this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel30.Controls.Add(this.DataListGroupBox, 0, 2);
-            this.tableLayoutPanel30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel30.Location = new System.Drawing.Point(763, 3);
-            this.tableLayoutPanel30.Name = "tableLayoutPanel30";
-            this.tableLayoutPanel30.RowCount = 3;
-            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel30.Size = new System.Drawing.Size(194, 401);
-            this.tableLayoutPanel30.TabIndex = 4;
+            this.groupBox9.Controls.Add(this.standardRadioButton);
+            this.groupBox9.Controls.Add(this.productRadioButton);
+            this.groupBox9.Controls.Add(this.lukasiewiczRadioButton);
+            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox9.Location = new System.Drawing.Point(3, 3);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(188, 114);
+            this.groupBox9.TabIndex = 4;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Norm";
             // 
-            // DataListGroupBox
+            // groupBox10
             // 
-            this.DataListGroupBox.BackColor = System.Drawing.Color.Transparent;
-            this.DataListGroupBox.Controls.Add(this.DataListLayoutPanel);
-            this.DataListGroupBox.Location = new System.Drawing.Point(3, 203);
-            this.DataListGroupBox.Name = "DataListGroupBox";
-            this.DataListGroupBox.Size = new System.Drawing.Size(188, 142);
-            this.DataListGroupBox.TabIndex = 3;
-            this.DataListGroupBox.TabStop = false;
-            this.DataListGroupBox.Text = "DataList";
+            this.groupBox10.Controls.Add(this.euclideanRadioButton);
+            this.groupBox10.Controls.Add(this.hammingRadioButton);
+            this.groupBox10.Location = new System.Drawing.Point(3, 123);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(188, 74);
+            this.groupBox10.TabIndex = 5;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Distance";
             // 
-            // DataListLayoutPanel
+            // hammingRadioButton
             // 
-            this.DataListLayoutPanel.AutoScroll = true;
-            this.DataListLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataListLayoutPanel.Location = new System.Drawing.Point(3, 19);
-            this.DataListLayoutPanel.Name = "DataListLayoutPanel";
-            this.DataListLayoutPanel.Size = new System.Drawing.Size(182, 120);
-            this.DataListLayoutPanel.TabIndex = 0;
+            this.hammingRadioButton.AutoSize = true;
+            this.hammingRadioButton.Location = new System.Drawing.Point(6, 22);
+            this.hammingRadioButton.Name = "hammingRadioButton";
+            this.hammingRadioButton.Size = new System.Drawing.Size(79, 19);
+            this.hammingRadioButton.TabIndex = 0;
+            this.hammingRadioButton.TabStop = true;
+            this.hammingRadioButton.Text = "Hamming";
+            this.hammingRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // euclideanRadioButton
+            // 
+            this.euclideanRadioButton.AutoSize = true;
+            this.euclideanRadioButton.Location = new System.Drawing.Point(6, 44);
+            this.euclideanRadioButton.Name = "euclideanRadioButton";
+            this.euclideanRadioButton.Size = new System.Drawing.Size(76, 19);
+            this.euclideanRadioButton.TabIndex = 1;
+            this.euclideanRadioButton.TabStop = true;
+            this.euclideanRadioButton.Text = "Euclidean";
+            this.euclideanRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // lukasiewiczRadioButton
+            // 
+            this.lukasiewiczRadioButton.AutoSize = true;
+            this.lukasiewiczRadioButton.Location = new System.Drawing.Point(6, 22);
+            this.lukasiewiczRadioButton.Name = "lukasiewiczRadioButton";
+            this.lukasiewiczRadioButton.Size = new System.Drawing.Size(87, 19);
+            this.lukasiewiczRadioButton.TabIndex = 0;
+            this.lukasiewiczRadioButton.TabStop = true;
+            this.lukasiewiczRadioButton.Text = "Lukasiewicz";
+            this.lukasiewiczRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // productRadioButton
+            // 
+            this.productRadioButton.AutoSize = true;
+            this.productRadioButton.Location = new System.Drawing.Point(6, 47);
+            this.productRadioButton.Name = "productRadioButton";
+            this.productRadioButton.Size = new System.Drawing.Size(67, 19);
+            this.productRadioButton.TabIndex = 1;
+            this.productRadioButton.TabStop = true;
+            this.productRadioButton.Text = "Product";
+            this.productRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // standardRadioButton
+            // 
+            this.standardRadioButton.AutoSize = true;
+            this.standardRadioButton.Location = new System.Drawing.Point(6, 72);
+            this.standardRadioButton.Name = "standardRadioButton";
+            this.standardRadioButton.Size = new System.Drawing.Size(72, 19);
+            this.standardRadioButton.TabIndex = 2;
+            this.standardRadioButton.TabStop = true;
+            this.standardRadioButton.Text = "Standard";
+            this.standardRadioButton.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -1243,6 +1334,8 @@ namespace msi
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Result)).EndInit();
+            this.tableLayoutPanel30.ResumeLayout(false);
+            this.DataListGroupBox.ResumeLayout(false);
             this.EditPage.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
@@ -1283,8 +1376,10 @@ namespace msi
             this.tableLayoutPanel21.ResumeLayout(false);
             this.ThirdStepGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ThirdStep)).EndInit();
-            this.tableLayoutPanel30.ResumeLayout(false);
-            this.DataListGroupBox.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1374,6 +1469,13 @@ namespace msi
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel30;
         private System.Windows.Forms.GroupBox DataListGroupBox;
         private System.Windows.Forms.FlowLayoutPanel DataListLayoutPanel;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.RadioButton standardRadioButton;
+        private System.Windows.Forms.RadioButton productRadioButton;
+        private System.Windows.Forms.RadioButton lukasiewiczRadioButton;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.RadioButton euclideanRadioButton;
+        private System.Windows.Forms.RadioButton hammingRadioButton;
     }
 }
 
