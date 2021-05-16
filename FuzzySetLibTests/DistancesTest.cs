@@ -41,11 +41,10 @@ namespace FuzzySetLibTests
 
             var exp = new float[,]
             {
-                {0.18f, 0.19f, 0.19f, 0.19f },
-                {0.13f, 0.34f, 0.2f, 0.14f  },
-                {0.17f, 0.18f, 0.18f, 0.22f },
-                {0.38f, 0.09f, 0.33f, 0.33f },
-                {0.40f, 0.27f, 0.35f, 0.35f }
+                { 0.18f, 0.13f, 0.17f, 0.38f, 0.40f },
+                { 0.19f, 0.34f, 0.18f, 0.09f, 0.27f },
+                { 0.19f, 0.20f, 0.18f, 0.33f, 0.35f },
+                { 0.19f, 0.14f, 0.22f, 0.33f, 0.35f }
             };
 
             var result = Distances.HammingSetDistance(pR, cQ);
@@ -76,11 +75,10 @@ namespace FuzzySetLibTests
 
             var exp = new float[,]
             {
-                { 0.23f, 0.27f, 0.24f, 0.20f },
-                { 0.19f, 0.43f, 0.28f, 0.18f },
-                { 0.27f, 0.24f, 0.25f, 0.26f },
-                { 0.43f, 0.12f, 0.42f, 0.37f },
-                { 0.46f, 0.36f, 0.43f, 0.39f }
+                { 0.23f, 0.19f, 0.27f, 0.43f, 0.46f },
+                { 0.27f, 0.43f, 0.24f, 0.12f, 0.36f },
+                { 0.24f, 0.28f, 0.25f, 0.42f, 0.43f },
+                { 0.20f, 0.18f, 0.26f, 0.37f, 0.39f }
             };
 
             var result = Distances.EuclideanSetDistance(pR, cQ);
