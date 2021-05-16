@@ -35,6 +35,11 @@ namespace msi
         private Data SelectedData = null;
         private List<Data> Sets = new List<Data>();
         private int precision = 3;
+
+        Func<float, float, float> norm = Norms.Lukasiewicz;
+        Func<float, float, float> impl = Implications.Lukasiewicz;
+        Func<Bounds[,], Bounds[,], float[,]> dist = Distances.HammingSetDistance;
+
         private void DisplayDataGridView<T>(InputSet<T> set, DataGridView dataGrid)
         {
             ClearDataGridView(dataGrid);
@@ -184,7 +189,7 @@ namespace msi
         {
             if (SelectedData == null)
             {
-                MessageBox.Show("Choose dataset");
+                MessageBox.Show("Choose dataset", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -199,7 +204,7 @@ namespace msi
         {
             if (SelectedData == null)
             {
-                MessageBox.Show("Choose dataset");
+                MessageBox.Show("Choose dataset", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             CurrentEditedData = SelectedData.Clone();
@@ -211,7 +216,7 @@ namespace msi
         {
             if (SelectedData == null)
             {
-                MessageBox.Show("Choose dataset");
+                MessageBox.Show("Choose dataset", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             Stream newStream;
@@ -233,11 +238,11 @@ namespace msi
                         StreamWriter streamWriter = new StreamWriter(newStream);
                         streamWriter.Write(serivalizedScene);
                         streamWriter.Close();
-                        MessageBox.Show("Zapisano pomyślnie");
+                        MessageBox.Show("Zapisano pomyślnie", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch
                     {
-                        MessageBox.Show("Nie udało się zapisać");
+                        MessageBox.Show("Nie udało się zapisać", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     newStream.Close();
@@ -247,8 +252,6 @@ namespace msi
 
         private void LoadDataButton_Click(object sender, EventArgs e)
         {
-            var fileContent = string.Empty;
-            var filePath = string.Empty;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 string path = ExamplesPath;
@@ -277,7 +280,7 @@ namespace msi
                 }
                 catch
                 {
-                    MessageBox.Show("File was not loaded");
+                    MessageBox.Show("File was not loaded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -361,7 +364,7 @@ namespace msi
         {
             if (string.IsNullOrEmpty(CurrentEditedData.Name))
             {
-                MessageBox.Show("Data name can not be empty");
+                MessageBox.Show("Data name can not be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (SelectedData == null)
@@ -400,10 +403,9 @@ namespace msi
         {
             if (SelectedCandidate == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
             string text = SelectedCandidate.Text;
             RemoveRowFormSet(CurrentEditedData.Q, text);
             EditWindowLoadData(CurrentEditedData);
@@ -413,10 +415,9 @@ namespace msi
         {
             if (SelectedJobPosition == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
             string text = SelectedJobPosition.Text;
             RemoveRowFormSet(CurrentEditedData.R, text);
             EditWindowLoadData(CurrentEditedData);
@@ -448,10 +449,9 @@ namespace msi
         {
             if (SelectedSkill == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
             string text = SelectedSkill.Text;
             RemoveColumnFromSet(CurrentEditedData.Q, text);
             RemoveColumnFromSet(CurrentEditedData.R, text);
@@ -464,11 +464,10 @@ namespace msi
             int index = colNames.IndexOf(columnName);
             colNames.Remove(columnName);
             set.ColNames = colNames.ToArray();
-            int m = 0;
             float[,] array = new float[set.RowCount, set.ColCount];
             for (int i = 0; i < set.RowCount; i++)
             {
-                m = 0;
+                int m = 0;
                 for (int j = 0; j < set.ColCount + 1; j++)
                 {
                     if (j != index)
@@ -484,22 +483,22 @@ namespace msi
         {
             if (SelectedCandidate == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(CandidateTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
+
             try
             {
                 EditRowNameForSet(CurrentEditedData.Q, SelectedCandidate.Text, CandidateTextBox.Text);
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             CandidateTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
@@ -509,22 +508,22 @@ namespace msi
         {
             if (SelectedJobPosition == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(JobPositionTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
+
             try
             {
                 EditRowNameForSet(CurrentEditedData.R, SelectedJobPosition.Text, JobPositionTextBox.Text);
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             JobPositionTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
@@ -545,12 +544,12 @@ namespace msi
         {
             if (SelectedSkill == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(SkillTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             Button button = (Button)sender;
@@ -561,7 +560,7 @@ namespace msi
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             SkillTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
@@ -582,7 +581,7 @@ namespace msi
         {
             if (string.IsNullOrEmpty(CandidateTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -591,7 +590,7 @@ namespace msi
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             CandidateTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
@@ -601,7 +600,7 @@ namespace msi
         {
             if (string.IsNullOrEmpty(JobPositionTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -610,7 +609,7 @@ namespace msi
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             JobPositionTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
@@ -640,7 +639,7 @@ namespace msi
         {
             if (string.IsNullOrEmpty(SkillTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -650,7 +649,7 @@ namespace msi
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             SkillTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
@@ -760,17 +759,17 @@ namespace msi
         {
             if (SelectedData == null)
             {
-                MessageBox.Show("Fill data table");
+                MessageBox.Show("Fill data table", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            float[,] Q = SelectedData.Q.Numbers; //kandydaci
-            float[,] R = SelectedData.R.Numbers; //stanowiska
+            float[,] Q = SelectedData.Q.Numbers; //candidates
+            float[,] R = SelectedData.R.Numbers; //positions
 
             Bounds[,] objectBounds, propertyBounds;
 
-            float[,] distances = Approximations.FuzzyRelationBasedApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz,
-                Distances.EuclideanSetDistance, Q, R, out objectBounds, out propertyBounds);
+            float[,] distances = Approximations.FuzzyRelationBasedApproximation(norm, impl, dist, Q, R,
+                out objectBounds, out propertyBounds);
 
             distances = RoundFloats(distances);
 
@@ -810,6 +809,54 @@ namespace msi
             };
 
             DisplayDataGridView(resultsSet, Result);
+        }
+
+        private void lukasiewiczRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            if(button.Checked)
+            {
+                norm = Norms.Lukasiewicz;
+                impl = Implications.Lukasiewicz;
+            }
+        }
+
+        private void productRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            if (button.Checked)
+            {
+                norm = Norms.Product;
+                impl = Implications.GoguenGaines;
+            }
+        }
+
+        private void standardRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            if (button.Checked)
+            {
+                norm = Norms.Standard;
+                impl = Implications.Godel;
+            }
+        }
+
+        private void hammingRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            if (button.Checked)
+            {
+                dist = Distances.HammingSetDistance;
+            }
+        }
+
+        private void euclideanRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            if (button.Checked)
+            {
+                dist = Distances.EuclideanSetDistance;
+            }
         }
     }
 }

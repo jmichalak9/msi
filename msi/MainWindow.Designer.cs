@@ -52,6 +52,13 @@ namespace msi
             this.tableLayoutPanel30 = new System.Windows.Forms.TableLayoutPanel();
             this.DataListGroupBox = new System.Windows.Forms.GroupBox();
             this.DataListLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.standardRadioButton = new System.Windows.Forms.RadioButton();
+            this.productRadioButton = new System.Windows.Forms.RadioButton();
+            this.lukasiewiczRadioButton = new System.Windows.Forms.RadioButton();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.euclideanRadioButton = new System.Windows.Forms.RadioButton();
+            this.hammingRadioButton = new System.Windows.Forms.RadioButton();
             this.EditPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
@@ -112,13 +119,6 @@ namespace msi
             this.DataScience = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel23 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.hammingRadioButton = new System.Windows.Forms.RadioButton();
-            this.euclideanRadioButton = new System.Windows.Forms.RadioButton();
-            this.lukasiewiczRadioButton = new System.Windows.Forms.RadioButton();
-            this.productRadioButton = new System.Windows.Forms.RadioButton();
-            this.standardRadioButton = new System.Windows.Forms.RadioButton();
             this.TabControlMenu.SuspendLayout();
             this.MainPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -132,6 +132,8 @@ namespace msi
             ((System.ComponentModel.ISupportInitialize)(this.Result)).BeginInit();
             this.tableLayoutPanel30.SuspendLayout();
             this.DataListGroupBox.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.EditPage.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -168,8 +170,6 @@ namespace msi
             this.tableLayoutPanel21.SuspendLayout();
             this.ThirdStepGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ThirdStep)).BeginInit();
-            this.groupBox9.SuspendLayout();
-            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControlMenu
@@ -476,6 +476,89 @@ namespace msi
             this.DataListLayoutPanel.Name = "DataListLayoutPanel";
             this.DataListLayoutPanel.Size = new System.Drawing.Size(182, 173);
             this.DataListLayoutPanel.TabIndex = 0;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.standardRadioButton);
+            this.groupBox9.Controls.Add(this.productRadioButton);
+            this.groupBox9.Controls.Add(this.lukasiewiczRadioButton);
+            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox9.Location = new System.Drawing.Point(3, 3);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(188, 114);
+            this.groupBox9.TabIndex = 4;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Norm";
+            // 
+            // standardRadioButton
+            // 
+            this.standardRadioButton.AutoSize = true;
+            this.standardRadioButton.Location = new System.Drawing.Point(6, 72);
+            this.standardRadioButton.Name = "standardRadioButton";
+            this.standardRadioButton.Size = new System.Drawing.Size(72, 19);
+            this.standardRadioButton.TabIndex = 2;
+            this.standardRadioButton.Text = "Standard";
+            this.standardRadioButton.UseVisualStyleBackColor = true;
+            this.standardRadioButton.CheckedChanged += new System.EventHandler(this.standardRadioButton_CheckedChanged);
+            // 
+            // productRadioButton
+            // 
+            this.productRadioButton.AutoSize = true;
+            this.productRadioButton.Location = new System.Drawing.Point(6, 47);
+            this.productRadioButton.Name = "productRadioButton";
+            this.productRadioButton.Size = new System.Drawing.Size(67, 19);
+            this.productRadioButton.TabIndex = 1;
+            this.productRadioButton.Text = "Product";
+            this.productRadioButton.UseVisualStyleBackColor = true;
+            this.productRadioButton.CheckedChanged += new System.EventHandler(this.productRadioButton_CheckedChanged);
+            // 
+            // lukasiewiczRadioButton
+            // 
+            this.lukasiewiczRadioButton.AutoSize = true;
+            this.lukasiewiczRadioButton.Checked = true;
+            this.lukasiewiczRadioButton.Location = new System.Drawing.Point(6, 22);
+            this.lukasiewiczRadioButton.Name = "lukasiewiczRadioButton";
+            this.lukasiewiczRadioButton.Size = new System.Drawing.Size(87, 19);
+            this.lukasiewiczRadioButton.TabIndex = 0;
+            this.lukasiewiczRadioButton.TabStop = true;
+            this.lukasiewiczRadioButton.Text = "Lukasiewicz";
+            this.lukasiewiczRadioButton.UseVisualStyleBackColor = true;
+            this.lukasiewiczRadioButton.CheckedChanged += new System.EventHandler(this.lukasiewiczRadioButton_CheckedChanged);
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.euclideanRadioButton);
+            this.groupBox10.Controls.Add(this.hammingRadioButton);
+            this.groupBox10.Location = new System.Drawing.Point(3, 123);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(188, 74);
+            this.groupBox10.TabIndex = 5;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Distance";
+            // 
+            // euclideanRadioButton
+            // 
+            this.euclideanRadioButton.AutoSize = true;
+            this.euclideanRadioButton.Location = new System.Drawing.Point(6, 44);
+            this.euclideanRadioButton.Name = "euclideanRadioButton";
+            this.euclideanRadioButton.Size = new System.Drawing.Size(76, 19);
+            this.euclideanRadioButton.TabIndex = 1;
+            this.euclideanRadioButton.Text = "Euclidean";
+            this.euclideanRadioButton.UseVisualStyleBackColor = true;
+            this.euclideanRadioButton.CheckedChanged += new System.EventHandler(this.euclideanRadioButton_CheckedChanged);
+            // 
+            // hammingRadioButton
+            // 
+            this.hammingRadioButton.AutoSize = true;
+            this.hammingRadioButton.Checked = true;
+            this.hammingRadioButton.Location = new System.Drawing.Point(6, 22);
+            this.hammingRadioButton.Name = "hammingRadioButton";
+            this.hammingRadioButton.Size = new System.Drawing.Size(79, 19);
+            this.hammingRadioButton.TabIndex = 0;
+            this.hammingRadioButton.TabStop = true;
+            this.hammingRadioButton.Text = "Hamming";
+            this.hammingRadioButton.UseVisualStyleBackColor = true;
+            this.hammingRadioButton.CheckedChanged += new System.EventHandler(this.hammingRadioButton_CheckedChanged);
             // 
             // EditPage
             // 
@@ -1233,85 +1316,6 @@ namespace msi
             this.groupBox7.TabIndex = 3;
             this.groupBox7.TabStop = false;
             // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.standardRadioButton);
-            this.groupBox9.Controls.Add(this.productRadioButton);
-            this.groupBox9.Controls.Add(this.lukasiewiczRadioButton);
-            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox9.Location = new System.Drawing.Point(3, 3);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(188, 114);
-            this.groupBox9.TabIndex = 4;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Norm";
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.euclideanRadioButton);
-            this.groupBox10.Controls.Add(this.hammingRadioButton);
-            this.groupBox10.Location = new System.Drawing.Point(3, 123);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(188, 74);
-            this.groupBox10.TabIndex = 5;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Distance";
-            // 
-            // hammingRadioButton
-            // 
-            this.hammingRadioButton.AutoSize = true;
-            this.hammingRadioButton.Location = new System.Drawing.Point(6, 22);
-            this.hammingRadioButton.Name = "hammingRadioButton";
-            this.hammingRadioButton.Size = new System.Drawing.Size(79, 19);
-            this.hammingRadioButton.TabIndex = 0;
-            this.hammingRadioButton.TabStop = true;
-            this.hammingRadioButton.Text = "Hamming";
-            this.hammingRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // euclideanRadioButton
-            // 
-            this.euclideanRadioButton.AutoSize = true;
-            this.euclideanRadioButton.Location = new System.Drawing.Point(6, 44);
-            this.euclideanRadioButton.Name = "euclideanRadioButton";
-            this.euclideanRadioButton.Size = new System.Drawing.Size(76, 19);
-            this.euclideanRadioButton.TabIndex = 1;
-            this.euclideanRadioButton.TabStop = true;
-            this.euclideanRadioButton.Text = "Euclidean";
-            this.euclideanRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // lukasiewiczRadioButton
-            // 
-            this.lukasiewiczRadioButton.AutoSize = true;
-            this.lukasiewiczRadioButton.Location = new System.Drawing.Point(6, 22);
-            this.lukasiewiczRadioButton.Name = "lukasiewiczRadioButton";
-            this.lukasiewiczRadioButton.Size = new System.Drawing.Size(87, 19);
-            this.lukasiewiczRadioButton.TabIndex = 0;
-            this.lukasiewiczRadioButton.TabStop = true;
-            this.lukasiewiczRadioButton.Text = "Lukasiewicz";
-            this.lukasiewiczRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // productRadioButton
-            // 
-            this.productRadioButton.AutoSize = true;
-            this.productRadioButton.Location = new System.Drawing.Point(6, 47);
-            this.productRadioButton.Name = "productRadioButton";
-            this.productRadioButton.Size = new System.Drawing.Size(67, 19);
-            this.productRadioButton.TabIndex = 1;
-            this.productRadioButton.TabStop = true;
-            this.productRadioButton.Text = "Product";
-            this.productRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // standardRadioButton
-            // 
-            this.standardRadioButton.AutoSize = true;
-            this.standardRadioButton.Location = new System.Drawing.Point(6, 72);
-            this.standardRadioButton.Name = "standardRadioButton";
-            this.standardRadioButton.Size = new System.Drawing.Size(72, 19);
-            this.standardRadioButton.TabIndex = 2;
-            this.standardRadioButton.TabStop = true;
-            this.standardRadioButton.Text = "Standard";
-            this.standardRadioButton.UseVisualStyleBackColor = true;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1336,6 +1340,10 @@ namespace msi
             ((System.ComponentModel.ISupportInitialize)(this.Result)).EndInit();
             this.tableLayoutPanel30.ResumeLayout(false);
             this.DataListGroupBox.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.EditPage.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
@@ -1376,10 +1384,6 @@ namespace msi
             this.tableLayoutPanel21.ResumeLayout(false);
             this.ThirdStepGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ThirdStep)).EndInit();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
