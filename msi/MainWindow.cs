@@ -181,9 +181,9 @@ namespace msi
         public MainWindow()
         {
             InitializeComponent();
-            LoadDataFromPath(ExamplesPath + "\\Example");
-            LoadDataFromPath(ExamplesPath + "\\Medyczny");
-            LoadDataFromPath(ExamplesPath + "\\Przyklad1");
+            LoadDataFromPath(ExamplesPath + "\\example.json");
+            LoadDataFromPath(ExamplesPath + "\\diseases.json");
+            LoadDataFromPath(ExamplesPath + "\\employees.json");
         }
 
         private void AddNewDataButton_Click(object sender, EventArgs e)
@@ -232,7 +232,7 @@ namespace msi
             SaveFileDialog saveFileDialog = new();
 
             string path = ExamplesPath;
-            saveFileDialog.Filter = "all files (*.*)|*.*";
+            saveFileDialog.Filter = "json file (*.json*)|*.json*";
             saveFileDialog.FilterIndex = 2;
             saveFileDialog.RestoreDirectory = true;
             saveFileDialog.InitialDirectory = path;
@@ -243,15 +243,16 @@ namespace msi
                 {
                     try
                     {
+                        saveFileDialog.DefaultExt = "json";
                         var serivalizedScene = JsonSerializer.Serialize((DataJsonClass)SelectedData);
                         StreamWriter streamWriter = new(newStream);
                         streamWriter.Write(serivalizedScene);
                         streamWriter.Close();
-                        MessageBox.Show("Zapisano pomyślnie", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Save done!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch
                     {
-                        MessageBox.Show("Nie udało się zapisać", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("File was not saved", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     newStream.Close();
@@ -264,7 +265,7 @@ namespace msi
             using (OpenFileDialog openFileDialog = new())
             {
                 string path = ExamplesPath;
-                openFileDialog.Filter = "all files (*.*)|*.*";
+                openFileDialog.Filter = "json file (*.json*)|*.json*";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
                 openFileDialog.InitialDirectory = path;
@@ -284,7 +285,8 @@ namespace msi
                 {
                     Data data = await JsonSerializer.DeserializeAsync<DataJsonClass>(openStream);
                     int x = path.LastIndexOf("\\");
-                    data.Name = path.Substring(x + 1);
+                    int dot = path.IndexOf('.');
+                    data.Name = path.Substring(x + 1, dot - 1 - x);
                     AddNewData(ref data);
                 }
                 catch
