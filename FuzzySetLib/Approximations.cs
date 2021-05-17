@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace FuzzySetLib
@@ -8,14 +9,19 @@ namespace FuzzySetLib
     {
         public float lower;
         public float upper;
+
+        public override string ToString()
+        {
+            return "(" + Math.Round(upper,3).ToString() + "; " + Math.Round(lower,3).ToString() + ")";
+        }
     }
     public class Approximations
     {
         public static float[,] FuzzyRelationBasedApproximation(Func<float, float, float> norm, Func<float, float, float> impl,
-            Func<Bounds[,], Bounds[,], float[,]> dist, float[,] Q, float[,] R)
+            Func<Bounds[,], Bounds[,], float[,]> dist, float[,] Q, float[,] R, out Bounds[,] objectBounds, out Bounds[,] propertyBounds)
         {
-            var objectBounds = ObjectBoundApproximation(norm, impl, Q, R);
-            var propertyBounds = PropertyBoundApproximation(norm, impl, Q, R);
+            objectBounds = ObjectBoundApproximation(norm, impl, Q, R);
+            propertyBounds = PropertyBoundApproximation(norm, impl, Q);
 
             return dist(objectBounds, propertyBounds);
         }
@@ -26,12 +32,12 @@ namespace FuzzySetLib
 
             for (int i = 0; i < R.GetLength(0); i++)
             {
-                var r = Enumerable.Range(0, R.GetLength(1))
+                var pR = Enumerable.Range(0, R.GetLength(1))
                     .Select(x => R[i, x])
                     .ToArray();
-                var lowerApprox = ObjectLowerApprox(norm, impl, Q, r);
-                var upperApprox = ObjectUpperApprox(norm, impl, Q, r);
-                for (int j = 0; j < r.GetLength(0); j++)
+                var lowerApprox = ObjectLowerApprox(norm, impl, Q, pR);
+                var upperApprox = ObjectUpperApprox(norm, impl, Q, pR);
+                for (int j = 0; j < pR.GetLength(0); j++)
                 {
                     approx[i,j].lower = lowerApprox[j];
                     approx[i,j].upper = upperApprox[j];
@@ -41,18 +47,18 @@ namespace FuzzySetLib
             return approx;
         }
         
-        public static Bounds[,] PropertyBoundApproximation(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q, float[,] R)
+        public static Bounds[,] PropertyBoundApproximation(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q)
         {
             var approx = new Bounds[Q.GetLength(0), Q.GetLength(1)];
 
             for (int i = 0; i < Q.GetLength(0); i++)
             {
-                var q = Enumerable.Range(0, Q.GetLength(1))
+                var cQ = Enumerable.Range(0, Q.GetLength(1))
                     .Select(x => Q[i, x])
                     .ToArray();
-                var lowerApprox = ObjectLowerApprox(norm, impl, Q, q);
-                var upperApprox = ObjectUpperApprox(norm, impl, Q, q);
-                for (int j = 0; j < q.GetLength(0); j++)
+                var lowerApprox = ObjectLowerApprox(norm, impl, Q, cQ);
+                var upperApprox = ObjectUpperApprox(norm, impl, Q, cQ);
+                for (int j = 0; j < cQ.GetLength(0); j++)
                 {
                     approx[i, j].lower = lowerApprox[j];
                     approx[i, j].upper = upperApprox[j];
@@ -63,15 +69,15 @@ namespace FuzzySetLib
         }
 
         // aka triangle pointed up
-        private static float[] ObjectLowerApprox(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q, float[] R)
+        private static float[] ObjectLowerApprox(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q, float[] A)
         {
             var necessities = new List<float>();
-            for (int j = 0; j < R.GetLength(0); j++)
+            for (int j = 0; j < Q.GetLength(0); j++)
             {
-                necessities.Add(FuzzyNecessity(impl, Q, R, j));
+                necessities.Add(FuzzyNecessity(impl, Q, A, j));
             }
             var possibilities = new List<float>();
-            for (int j = 0; j < R.GetLength(0); j++)
+            for (int j = 0; j < Q.GetLength(1); j++)
             {
                 possibilities.Add(FuzzyPossibility(norm, Transpose(Q), necessities.ToArray(), j));
             }
@@ -79,15 +85,15 @@ namespace FuzzySetLib
         }
 
         // aka triangle pointed down
-        private static float[] ObjectUpperApprox(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q, float[] R)
+        private static float[] ObjectUpperApprox(Func<float, float, float> norm, Func<float, float, float> impl, float[,] Q, float[] A)
         {
             var possibilities = new List<float>();
-            for (int j = 0; j < R.GetLength(0); j++)
+            for (int j = 0; j < Q.GetLength(0); j++)
             {
-                possibilities.Add(FuzzyPossibility(norm, Q, R, j));
+                possibilities.Add(FuzzyPossibility(norm, Q, A, j));
             }
             var necessities = new List<float>();
-            for (int j = 0; j < R.GetLength(0); j++)
+            for (int j = 0; j < Q.GetLength(1); j++)
             {
                 necessities.Add(FuzzyNecessity(impl, Transpose(Q), possibilities.ToArray(), j));
             }
@@ -98,7 +104,7 @@ namespace FuzzySetLib
         private static float FuzzyNecessity(Func<float,float,float> impl, float[,] Q, float[] A, int x)
         {
             float necessity = float.MaxValue;
-            for (int y = 0; y < Q.GetLength(1); y++)
+            for (int y = 0; y < A.Length; y++)
                 necessity = Math.Min(necessity, impl(Q[x, y], A[y]));
             return necessity;
         }
@@ -107,7 +113,7 @@ namespace FuzzySetLib
         private static float FuzzyPossibility(Func<float, float, float> norm, float[,] Q, float[] A, int x)
         {
             float possibility = float.MinValue;
-            for (int y = 0; y < Q.GetLength(1); y++)
+            for (int y = 0; y < A.Length; y++)
                 possibility = Math.Max(possibility, norm(Q[x, y], A[y]));
             return possibility;
         }

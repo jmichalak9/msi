@@ -17,9 +17,9 @@ namespace FuzzySetLibTests
         }
 
         [Fact]
-        public void KleeneDienesTest()
+        public void GoguenGainesTest()
         {
-            AssertNaturalImplication(Implications.KleeneDienes);
+            AssertNaturalImplication(Implications.GoguenGaines);
         }
 
         [Fact]

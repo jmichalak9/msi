@@ -10,7 +10,7 @@ namespace FuzzySetLib
     {
         public static float[,] HammingSetDistance(Bounds[,] objectBounds, Bounds[,] propertyBounds)
         {
-            float[,] distances = new float[propertyBounds.GetLength(0), objectBounds.GetLength(0)];
+            float[,] distances = new float[objectBounds.GetLength(0), propertyBounds.GetLength(0)];
 
             for (int i = 0; i < distances.GetLength(0); i++)
             {
@@ -18,7 +18,7 @@ namespace FuzzySetLib
                 {
                     for (int k = 0; k < objectBounds.GetLength(1); k++)
                     {
-                        distances[i, j] += HammingBoundDistance(propertyBounds[i, k], objectBounds[j, k]);
+                        distances[i, j] += HammingBoundDistance(propertyBounds[j, k], objectBounds[i, k]);
                     }
                     distances[i, j] /= 2 * objectBounds.GetLength(1);
                 }
@@ -29,7 +29,7 @@ namespace FuzzySetLib
 
         public static float[,] EuclideanSetDistance(Bounds[,] objectBounds, Bounds[,] propertyBounds)
         {
-            float[,] distances = new float[propertyBounds.GetLength(0), objectBounds.GetLength(0)];
+            float[,] distances = new float[objectBounds.GetLength(0), propertyBounds.GetLength(0)];
 
             for (int i = 0; i < distances.GetLength(0); i++)
             {
@@ -37,7 +37,7 @@ namespace FuzzySetLib
                 {
                     for (int k = 0; k < objectBounds.GetLength(1); k++)
                     {
-                        distances[i, j] += EuclideanBoundDistance(propertyBounds[i, k], objectBounds[j, k]);
+                        distances[i, j] += EuclideanBoundDistance(propertyBounds[j, k], objectBounds[i, k]);
                     }
                     distances[i, j] = (float)Math.Sqrt(distances[i, j] / (2 * objectBounds.GetLength(1)));
                 }

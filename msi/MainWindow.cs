@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FuzzySetLib;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -30,17 +31,29 @@ namespace msi
         private Button SelectedJobPosition = null;
         private Button SelectedSkill = null;
         private int LastDataNr = 0;
-        private Data CurrentEditedData = new Data();
+        private Data CurrentEditedData = new();
         private Data SelectedData = null;
-        private List<Data> Sets = new List<Data>();
-        private void DisplayDataGridView(InputSet set, DataGridView dataGrid)
+        private List<Data> Sets = new();
+        private readonly int precision = 3;
+
+        Func<float, float, float> norm = Norms.Lukasiewicz;
+        Func<float, float, float> impl = Implications.Lukasiewicz;
+        Func<Bounds[,], Bounds[,], float[,]> dist = Distances.HammingSetDistance;
+
+        private void DisplayDataGridView<T>(InputSet<T> set, DataGridView dataGrid)
         {
-            if (set.ColCount == 0) return;
+            ClearDataGridView(dataGrid);
+            if (set.ColCount == 0)
+                return;
+
             for (int i = 0; i < set.ColCount; i++)
             {
                 dataGrid.Columns.Add(i.ToString(), set.ColNames[i]);
             }
-            if (set.RowCount == 0) return;
+
+            if (set.RowCount == 0)
+                return;
+
             dataGrid.Rows.Add(set.RowCount);
             for (int i = 0; i < set.RowCount; i++)
             {
@@ -50,29 +63,29 @@ namespace msi
                     dataGrid.Rows[i].Cells[j].Value = set.Numbers[i, j];
                 }
             }
+
         }
 
         private void MainWindowLoadData(Data data)
         {
-            ClearMainWindowDataGrids();
+            ClearDataGridView(QSetDataGrid);
+            ClearDataGridView(RSetDataGrid);
             if (data == null) return;
             DisplayDataGridView(data.Q, QSetDataGrid);
             DisplayDataGridView(data.R, RSetDataGrid);
         }
 
-        private void ClearMainWindowDataGrids()
+        private void ClearDataGridView(DataGridView dataGrid)
         {
-            QSetDataGrid.DataSource = null;
-            QSetDataGrid.Rows.Clear();
-            QSetDataGrid.Columns.Clear();
-            RSetDataGrid.DataSource = null;
-            RSetDataGrid.Rows.Clear();
-            RSetDataGrid.Columns.Clear();
+            dataGrid.DataSource = null;
+            dataGrid.Columns.Clear();
+            dataGrid.Rows.Clear();
         }
 
         private void EditWindowLoadData(Data data)
         {
-            ClearEditWindowDataGrids();
+            ClearDataGridView(QSetEdit);
+            ClearDataGridView(RSetEdit);
             ClearEditWindowPanels();
             if (data == null) return;
             NameEditTextBox.Text = data.Name;
@@ -87,10 +100,13 @@ namespace msi
         {
             foreach (string rowname in data.R.RowNames)
             {
-                Button newButton = new Button();
-                newButton.Name = $"jobposition{rowname}";
-                newButton.Text = rowname;
-                newButton.Size = new Size(90, 23);
+                Button newButton = new()
+                {
+                    Name = $"jobposition{rowname}",
+                    Text = rowname,
+                    Size = new Size(JobPositionLayoutPanel.Width - 30, 23)
+                };
+
                 newButton.Click += (object sender, EventArgs e) =>
                 {
                     SelectedJobPosition = (Button)sender;
@@ -109,10 +125,13 @@ namespace msi
         {
             foreach (string rowname in data.Q.RowNames)
             {
-                Button newButton = new Button();
-                newButton.Name = $"candidate{rowname}";
-                newButton.Text = rowname;
-                newButton.Size = new Size(90, 23);
+                Button newButton = new()
+                {
+                    Name = $"candidate{rowname}",
+                    Text = rowname,
+                    Size = new Size(CandidateLayoutPanel.Width - 30, 23)
+                };
+
                 newButton.Click += (object sender, EventArgs e) =>
                 {
                     SelectedCandidate = (Button)sender;
@@ -131,10 +150,13 @@ namespace msi
         {
             foreach (string colname in data.Q.ColNames)
             {
-                Button newButton = new Button();
-                newButton.Name = $"skill{colname}";
-                newButton.Text = colname;
-                newButton.Size = new Size(90, 23);
+                Button newButton = new()
+                {
+                    Name = $"skill{colname}",
+                    Text = colname,
+                    Size = new Size(SkillLayoutPanel.Width - 30, 23)
+                };
+
                 newButton.Click += (object sender, EventArgs e) =>
                 {
                     SelectedSkill = (Button)sender;
@@ -156,20 +178,12 @@ namespace msi
             SkillLayoutPanel.Controls.Clear();
         }
 
-        private void ClearEditWindowDataGrids()
-        {
-            QSetEdit.DataSource = null;
-            QSetEdit.Rows.Clear();
-            QSetEdit.Columns.Clear();
-            RSetEdit.DataSource = null;
-            RSetEdit.Rows.Clear();
-            RSetEdit.Columns.Clear();
-        }
-
         public MainWindow()
         {
             InitializeComponent();
-            LoadDataFromPath(ExamplesPath + "\\Przyklad1");
+            LoadDataFromPath(ExamplesPath + "\\example.json");
+            LoadDataFromPath(ExamplesPath + "\\diseases.json");
+            LoadDataFromPath(ExamplesPath + "\\employees.json");
         }
 
         private void AddNewDataButton_Click(object sender, EventArgs e)
@@ -184,7 +198,7 @@ namespace msi
         {
             if (SelectedData == null)
             {
-                MessageBox.Show("Choose dataset");
+                MessageBox.Show("Choose dataset", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -199,7 +213,7 @@ namespace msi
         {
             if (SelectedData == null)
             {
-                MessageBox.Show("Choose dataset");
+                MessageBox.Show("Choose dataset", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             CurrentEditedData = SelectedData.Clone();
@@ -211,14 +225,14 @@ namespace msi
         {
             if (SelectedData == null)
             {
-                MessageBox.Show("Choose dataset");
+                MessageBox.Show("Choose dataset", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             Stream newStream;
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            SaveFileDialog saveFileDialog = new();
 
             string path = ExamplesPath;
-            saveFileDialog.Filter = "all files (*.*)|*.*";
+            saveFileDialog.Filter = "json file (*.json*)|*.json*";
             saveFileDialog.FilterIndex = 2;
             saveFileDialog.RestoreDirectory = true;
             saveFileDialog.InitialDirectory = path;
@@ -229,15 +243,16 @@ namespace msi
                 {
                     try
                     {
+                        saveFileDialog.DefaultExt = "json";
                         var serivalizedScene = JsonSerializer.Serialize((DataJsonClass)SelectedData);
-                        StreamWriter streamWriter = new StreamWriter(newStream);
+                        StreamWriter streamWriter = new(newStream);
                         streamWriter.Write(serivalizedScene);
                         streamWriter.Close();
-                        MessageBox.Show("Zapisano pomyślnie");
+                        MessageBox.Show("Save done!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch
                     {
-                        MessageBox.Show("Nie udało się zapisać");
+                        MessageBox.Show("File was not saved", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     newStream.Close();
@@ -247,12 +262,10 @@ namespace msi
 
         private void LoadDataButton_Click(object sender, EventArgs e)
         {
-            var fileContent = string.Empty;
-            var filePath = string.Empty;
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using (OpenFileDialog openFileDialog = new())
             {
                 string path = ExamplesPath;
-                openFileDialog.Filter = "all files (*.*)|*.*";
+                openFileDialog.Filter = "json file (*.json*)|*.json*";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
                 openFileDialog.InitialDirectory = path;
@@ -272,12 +285,13 @@ namespace msi
                 {
                     Data data = await JsonSerializer.DeserializeAsync<DataJsonClass>(openStream);
                     int x = path.LastIndexOf("\\");
-                    data.Name = path.Substring(x + 1);
+                    int dot = path.IndexOf('.');
+                    data.Name = path.Substring(x + 1, dot - 1 - x);
                     AddNewData(ref data);
                 }
                 catch
                 {
-                    MessageBox.Show("File was not loaded");
+                    MessageBox.Show("File was not loaded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -287,10 +301,13 @@ namespace msi
             if (data == null) return;
             data.Number = LastDataNr++;
             Sets.Add(data);
-            Button dataButton = new Button();
-            dataButton.Name = $"data{data.Number}";
-            dataButton.Text = data.Name;
-            dataButton.Size = new Size(143, 23);
+            Button dataButton = new()
+            {
+                Name = $"data{data.Number}",
+                Text = data.Name,
+                Size = new Size(143, 23)
+            };
+
             dataButton.Click += (object sender, EventArgs e) =>
             {
                 Button button = (Button)sender;
@@ -361,7 +378,7 @@ namespace msi
         {
             if (string.IsNullOrEmpty(CurrentEditedData.Name))
             {
-                MessageBox.Show("Data name can not be empty");
+                MessageBox.Show("Data name can not be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (SelectedData == null)
@@ -400,10 +417,9 @@ namespace msi
         {
             if (SelectedCandidate == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
             string text = SelectedCandidate.Text;
             RemoveRowFormSet(CurrentEditedData.Q, text);
             EditWindowLoadData(CurrentEditedData);
@@ -413,16 +429,15 @@ namespace msi
         {
             if (SelectedJobPosition == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
             string text = SelectedJobPosition.Text;
             RemoveRowFormSet(CurrentEditedData.R, text);
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void RemoveRowFormSet(InputSet set, string rowName)
+        private void RemoveRowFormSet(InputSet<float> set, string rowName)
         {
             List<string> jobPositions = set.RowNames.ToList();
             int index = jobPositions.IndexOf(rowName);
@@ -448,27 +463,25 @@ namespace msi
         {
             if (SelectedSkill == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
             string text = SelectedSkill.Text;
             RemoveColumnFromSet(CurrentEditedData.Q, text);
             RemoveColumnFromSet(CurrentEditedData.R, text);
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void RemoveColumnFromSet(InputSet set, string columnName)
+        private void RemoveColumnFromSet(InputSet<float> set, string columnName)
         {
             List<string> colNames = set.ColNames.ToList();
             int index = colNames.IndexOf(columnName);
             colNames.Remove(columnName);
             set.ColNames = colNames.ToArray();
-            int m = 0;
             float[,] array = new float[set.RowCount, set.ColCount];
             for (int i = 0; i < set.RowCount; i++)
             {
-                m = 0;
+                int m = 0;
                 for (int j = 0; j < set.ColCount + 1; j++)
                 {
                     if (j != index)
@@ -484,22 +497,22 @@ namespace msi
         {
             if (SelectedCandidate == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(CandidateTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
+
             try
             {
                 EditRowNameForSet(CurrentEditedData.Q, SelectedCandidate.Text, CandidateTextBox.Text);
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             CandidateTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
@@ -509,28 +522,28 @@ namespace msi
         {
             if (SelectedJobPosition == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(JobPositionTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
+
             try
             {
                 EditRowNameForSet(CurrentEditedData.R, SelectedJobPosition.Text, JobPositionTextBox.Text);
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             JobPositionTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void EditRowNameForSet(InputSet set, string rowName, string newRowName)
+        private void EditRowNameForSet(InputSet<float> set, string rowName, string newRowName)
         {
             List<string> rowNames = set.RowNames.ToList();
             if (rowNames.Contains(newRowName))
@@ -545,15 +558,15 @@ namespace msi
         {
             if (SelectedSkill == null)
             {
-                MessageBox.Show("Select candidate");
+                MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(SkillTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Button button = (Button)sender;
+
             try
             {
                 EditColumnNameForSet(CurrentEditedData.R, SelectedSkill.Text, SkillTextBox.Text);
@@ -561,13 +574,13 @@ namespace msi
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             SkillTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void EditColumnNameForSet(InputSet set, string columnName, string newColumnName)
+        private void EditColumnNameForSet(InputSet<float> set, string columnName, string newColumnName)
         {
             List<string> colNames = set.ColNames.ToList();
             if (colNames.Contains(newColumnName))
@@ -582,7 +595,7 @@ namespace msi
         {
             if (string.IsNullOrEmpty(CandidateTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -591,7 +604,7 @@ namespace msi
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             CandidateTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
@@ -601,7 +614,7 @@ namespace msi
         {
             if (string.IsNullOrEmpty(JobPositionTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -610,13 +623,13 @@ namespace msi
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             JobPositionTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void AddRowToSet(InputSet set, string newRowName)
+        private void AddRowToSet(InputSet<float> set, string newRowName)
         {
             List<string> rowNames = set.RowNames.ToList();
             if (rowNames.Contains(newRowName))
@@ -640,7 +653,7 @@ namespace msi
         {
             if (string.IsNullOrEmpty(SkillTextBox.Text))
             {
-                MessageBox.Show("Text is empty");
+                MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -650,13 +663,13 @@ namespace msi
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             SkillTextBox.Text = "";
             EditWindowLoadData(CurrentEditedData);
         }
 
-        private void AddColumnToSet(InputSet set, string newColumnName)
+        private void AddColumnToSet(InputSet<float> set, string newColumnName)
         {
             List<string> colNames = set.ColNames.ToList();
             if (colNames.Contains(newColumnName))
@@ -674,6 +687,211 @@ namespace msi
                 }
             }
             set.Numbers = array;
+        }
+
+        private string[,] BoundsToStrings(Bounds[,] bounds)
+        {
+            var result = new string[bounds.GetLength(0), bounds.GetLength(1)];
+            for (int i = 0; i < bounds.GetLength(0); i++)
+            {
+                for (int j = 0; j < bounds.GetLength(1); j++)
+                {
+                    result[i, j] = bounds[i, j].ToString();
+                }
+            }
+
+            return result;
+        }
+
+        private float[,] RoundFloats(float[,] tab)
+        {
+            var result = new float[tab.GetLength(0), tab.GetLength(1)];
+            for (int i = 0; i < tab.GetLength(0); i++)
+            {
+                for (int j = 0; j < tab.GetLength(1); j++)
+                {
+                    result[i, j] = (float)Math.Round(tab[i, j], precision);
+                }
+            }
+
+            return result;
+        }
+
+        // x < y -> -1
+        // x == y -> 0
+        // x > y -> 1
+        private int CompareFloats(float x, float y)
+        {
+            int xi = (int)(x * Math.Pow(10, precision));
+            int yi = (int)(y * Math.Pow(10, precision));
+
+            if (xi < yi)
+            {
+                return -1;
+            }
+            else if (xi == yi)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+
+        }
+
+        private string[,] ChooseBest(float[,] distances, string[] candidates)
+        {
+            string[,] result = new string[1, distances.GetLength(0)];
+
+            for (int i = 0; i < distances.GetLength(0); i++)
+            {
+                string bests = candidates[0];
+                float min = distances[i, 0];
+
+                for (int j = 1; j < distances.GetLength(1); j++)
+                {
+                    int cmp = CompareFloats(min, distances[i, j]);
+                    if (cmp == 1)
+                    {
+                        min = distances[i, j];
+                        bests = candidates[j];
+                    }
+                    else if (cmp == 0)
+                    {
+                        bests += ", " + candidates[j];
+                    }
+
+                    result[0, i] = bests;
+                }
+            }
+
+            return result;
+        }
+
+        private void CalculateButton_Click(object sender, EventArgs e)
+        {
+            if (SelectedData == null)
+            {
+                MessageBox.Show("Fill data table", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            float[,] Q = SelectedData.Q.Numbers; //candidates
+            float[,] R = SelectedData.R.Numbers; //positions
+
+            float[,] distances = Approximations.FuzzyRelationBasedApproximation(norm, impl, dist, Q, R,
+                out Bounds[,] objectBounds, out Bounds[,] propertyBounds);
+
+            distances = RoundFloats(distances);
+
+            InputSet<float> distanceSet = new()
+            {
+                Numbers = distances,
+                ColNames = SelectedData.Q.RowNames,
+                RowNames = SelectedData.R.RowNames
+            };
+
+            InputSet<string> objectBundsSet = new()
+            {
+                Numbers = BoundsToStrings(objectBounds),
+                ColNames = SelectedData.R.ColNames,
+                RowNames = SelectedData.R.RowNames
+            };
+
+            InputSet<string> propertyBoundsSet = new()
+            {
+                Numbers = BoundsToStrings(propertyBounds),
+                ColNames = SelectedData.Q.ColNames,
+                RowNames = SelectedData.Q.RowNames
+            };
+
+            DisplayDataGridView(distanceSet, ThirdStep);
+            DisplayDataGridView(objectBundsSet, FirstStepSet);
+            DisplayDataGridView(propertyBoundsSet, SecondStep);
+
+            InputSet<string> resultsSet = new()
+            {
+                Numbers = ChooseBest(distances, SelectedData.Q.RowNames),
+                RowNames = new string[]
+                {
+                    "Best Candidates"
+                },
+                ColNames = SelectedData.R.RowNames
+            };
+
+            DisplayDataGridView(resultsSet, Result);
+        }
+
+        private void lukasiewiczRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            if (button.Checked)
+            {
+                norm = Norms.Lukasiewicz;
+                impl = Implications.Lukasiewicz;
+            }
+        }
+
+        private void productRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            if (button.Checked)
+            {
+                norm = Norms.Product;
+                impl = Implications.GoguenGaines;
+            }
+        }
+
+        private void standardRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            if (button.Checked)
+            {
+                norm = Norms.Standard;
+                impl = Implications.Godel;
+            }
+        }
+
+        private void hammingRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            if (button.Checked)
+            {
+                dist = Distances.HammingSetDistance;
+            }
+        }
+
+        private void euclideanRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            if (button.Checked)
+            {
+                dist = Distances.EuclideanSetDistance;
+            }
+        }
+
+        private void CandidateLayoutPanel_Resize(object sender, EventArgs e)
+        {
+            ResizeLayoutPanelButtons((FlowLayoutPanel)sender);
+        }
+
+        private void JobPositionLayoutPanel_Resize(object sender, EventArgs e)
+        {
+            ResizeLayoutPanelButtons((FlowLayoutPanel)sender);
+        }
+
+        private void SkillLayoutPanel_Resize(object sender, EventArgs e)
+        {
+            ResizeLayoutPanelButtons((FlowLayoutPanel)sender);
+        }
+
+        private void ResizeLayoutPanelButtons(FlowLayoutPanel panel)
+        {
+            foreach (Button button in panel.Controls)
+            {
+                button.Width = panel.Width - 30;
+            }
         }
     }
 }

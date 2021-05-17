@@ -56,13 +56,6 @@ namespace FuzzySetLibTests
                 { 0.1f, 0.0f, 0.2f, 0.2f, 0.8f },
             };
 
-            var R = new float[,]{
-                { 0.8f, 0.6f, 0.2f, 0.6f, 0.1f },
-                { 0.0f, 0.4f, 0.6f, 0.1f, 0.1f },
-                { 0.8f, 0.8f, 0.0f, 0.2f, 0.0f },
-                { 0.6f, 0.5f, 0.3f, 0.7f, 0.3f },
-            };
-
             var exp = new Bounds[,]
             {
                 { b(0.4,0.4), b(0.3,0.4), b(0.1,0.2), b(0.4,0.4), b(0.1,0.2), },
@@ -72,7 +65,7 @@ namespace FuzzySetLibTests
                 { b(0.1,0.3), b(0.0,0.4), b(0.2,0.2), b(0.2,0.3), b(0.8,0.8), },
             };
 
-            var act = Approximations.PropertyBoundApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Q, R);
+            var act = Approximations.PropertyBoundApproximation(Norms.Lukasiewicz, Implications.Lukasiewicz, Q);
 
             AssertApproximationsEqual(exp, act);
         }

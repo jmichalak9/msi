@@ -32,8 +32,6 @@ namespace msi
             this.TabControlMenu = new System.Windows.Forms.TabControl();
             this.MainPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.DataListGroupBox = new System.Windows.Forms.GroupBox();
-            this.DataListLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.LoadDataButton = new System.Windows.Forms.Button();
             this.SaveDataButton = new System.Windows.Forms.Button();
@@ -51,6 +49,16 @@ namespace msi
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.Result = new System.Windows.Forms.DataGridView();
             this.ResultLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel30 = new System.Windows.Forms.TableLayoutPanel();
+            this.DataListGroupBox = new System.Windows.Forms.GroupBox();
+            this.DataListLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.standardRadioButton = new System.Windows.Forms.RadioButton();
+            this.productRadioButton = new System.Windows.Forms.RadioButton();
+            this.lukasiewiczRadioButton = new System.Windows.Forms.RadioButton();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.euclideanRadioButton = new System.Windows.Forms.RadioButton();
+            this.hammingRadioButton = new System.Windows.Forms.RadioButton();
             this.EditPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
@@ -114,7 +122,6 @@ namespace msi
             this.TabControlMenu.SuspendLayout();
             this.MainPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.DataListGroupBox.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RSetDataGrid)).BeginInit();
@@ -123,6 +130,10 @@ namespace msi
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Result)).BeginInit();
+            this.tableLayoutPanel30.SuspendLayout();
+            this.DataListGroupBox.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.EditPage.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -170,7 +181,7 @@ namespace msi
             this.TabControlMenu.Location = new System.Drawing.Point(0, 0);
             this.TabControlMenu.Name = "TabControlMenu";
             this.TabControlMenu.SelectedIndex = 0;
-            this.TabControlMenu.Size = new System.Drawing.Size(800, 450);
+            this.TabControlMenu.Size = new System.Drawing.Size(884, 561);
             this.TabControlMenu.TabIndex = 0;
             // 
             // MainPage
@@ -179,7 +190,7 @@ namespace msi
             this.MainPage.Location = new System.Drawing.Point(4, 24);
             this.MainPage.Name = "MainPage";
             this.MainPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MainPage.Size = new System.Drawing.Size(792, 422);
+            this.MainPage.Size = new System.Drawing.Size(876, 533);
             this.MainPage.TabIndex = 0;
             this.MainPage.Text = "Main";
             this.MainPage.UseVisualStyleBackColor = true;
@@ -192,41 +203,20 @@ namespace msi
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel1.Controls.Add(this.DataListGroupBox, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel30, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 416);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(870, 527);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // DataListGroupBox
-            // 
-            this.DataListGroupBox.BackColor = System.Drawing.Color.Transparent;
-            this.DataListGroupBox.Controls.Add(this.DataListLayoutPanel);
-            this.DataListGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataListGroupBox.Location = new System.Drawing.Point(579, 3);
-            this.DataListGroupBox.Name = "DataListGroupBox";
-            this.DataListGroupBox.Size = new System.Drawing.Size(194, 290);
-            this.DataListGroupBox.TabIndex = 0;
-            this.DataListGroupBox.TabStop = false;
-            this.DataListGroupBox.Text = "DataList";
-            // 
-            // DataListLayoutPanel
-            // 
-            this.DataListLayoutPanel.AutoScroll = true;
-            this.DataListLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataListLayoutPanel.Location = new System.Drawing.Point(3, 19);
-            this.DataListLayoutPanel.Name = "DataListLayoutPanel";
-            this.DataListLayoutPanel.Size = new System.Drawing.Size(188, 268);
-            this.DataListLayoutPanel.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
@@ -239,21 +229,21 @@ namespace msi
             this.tableLayoutPanel2.Controls.Add(this.DeleteDataButton, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.EditDataButton, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(579, 309);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(663, 400);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 94);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 114);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // LoadDataButton
             // 
             this.LoadDataButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadDataButton.Location = new System.Drawing.Point(100, 34);
+            this.LoadDataButton.Location = new System.Drawing.Point(100, 41);
             this.LoadDataButton.Name = "LoadDataButton";
-            this.LoadDataButton.Size = new System.Drawing.Size(91, 25);
+            this.LoadDataButton.Size = new System.Drawing.Size(91, 32);
             this.LoadDataButton.TabIndex = 4;
             this.LoadDataButton.Text = "Load";
             this.LoadDataButton.UseVisualStyleBackColor = true;
@@ -264,7 +254,7 @@ namespace msi
             this.SaveDataButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SaveDataButton.Location = new System.Drawing.Point(100, 3);
             this.SaveDataButton.Name = "SaveDataButton";
-            this.SaveDataButton.Size = new System.Drawing.Size(91, 25);
+            this.SaveDataButton.Size = new System.Drawing.Size(91, 32);
             this.SaveDataButton.TabIndex = 3;
             this.SaveDataButton.Text = "Save";
             this.SaveDataButton.UseVisualStyleBackColor = true;
@@ -275,7 +265,7 @@ namespace msi
             this.AddNewDataButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddNewDataButton.Location = new System.Drawing.Point(3, 3);
             this.AddNewDataButton.Name = "AddNewDataButton";
-            this.AddNewDataButton.Size = new System.Drawing.Size(91, 25);
+            this.AddNewDataButton.Size = new System.Drawing.Size(91, 32);
             this.AddNewDataButton.TabIndex = 0;
             this.AddNewDataButton.Text = "Add new";
             this.AddNewDataButton.UseVisualStyleBackColor = true;
@@ -284,9 +274,9 @@ namespace msi
             // DeleteDataButton
             // 
             this.DeleteDataButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeleteDataButton.Location = new System.Drawing.Point(3, 34);
+            this.DeleteDataButton.Location = new System.Drawing.Point(3, 41);
             this.DeleteDataButton.Name = "DeleteDataButton";
-            this.DeleteDataButton.Size = new System.Drawing.Size(91, 25);
+            this.DeleteDataButton.Size = new System.Drawing.Size(91, 32);
             this.DeleteDataButton.TabIndex = 1;
             this.DeleteDataButton.Text = "Delete";
             this.DeleteDataButton.UseVisualStyleBackColor = true;
@@ -295,9 +285,9 @@ namespace msi
             // EditDataButton
             // 
             this.EditDataButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EditDataButton.Location = new System.Drawing.Point(3, 65);
+            this.EditDataButton.Location = new System.Drawing.Point(3, 79);
             this.EditDataButton.Name = "EditDataButton";
-            this.EditDataButton.Size = new System.Drawing.Size(91, 26);
+            this.EditDataButton.Size = new System.Drawing.Size(91, 32);
             this.EditDataButton.TabIndex = 2;
             this.EditDataButton.Text = "Edit";
             this.EditDataButton.UseVisualStyleBackColor = true;
@@ -321,7 +311,7 @@ namespace msi
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(560, 290);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(644, 381);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // RSetDataGrid
@@ -330,12 +320,12 @@ namespace msi
             this.RSetDataGrid.AllowUserToDeleteRows = false;
             this.RSetDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RSetDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RSetDataGrid.Location = new System.Drawing.Point(13, 168);
+            this.RSetDataGrid.Location = new System.Drawing.Point(13, 213);
             this.RSetDataGrid.Name = "RSetDataGrid";
             this.RSetDataGrid.ReadOnly = true;
             this.RSetDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.RSetDataGrid.RowTemplate.Height = 25;
-            this.RSetDataGrid.Size = new System.Drawing.Size(544, 119);
+            this.RSetDataGrid.Size = new System.Drawing.Size(628, 165);
             this.RSetDataGrid.TabIndex = 0;
             // 
             // QSetLabel
@@ -358,16 +348,16 @@ namespace msi
             this.QSetDataGrid.ReadOnly = true;
             this.QSetDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.QSetDataGrid.RowTemplate.Height = 25;
-            this.QSetDataGrid.Size = new System.Drawing.Size(544, 119);
+            this.QSetDataGrid.Size = new System.Drawing.Size(628, 164);
             this.QSetDataGrid.TabIndex = 4;
             // 
             // RSetLabel
             // 
             this.RSetLabel.AutoSize = true;
             this.RSetLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RSetLabel.Location = new System.Drawing.Point(13, 145);
+            this.RSetLabel.Location = new System.Drawing.Point(13, 190);
             this.RSetLabel.Name = "RSetLabel";
-            this.RSetLabel.Size = new System.Drawing.Size(544, 20);
+            this.RSetLabel.Size = new System.Drawing.Size(628, 20);
             this.RSetLabel.TabIndex = 5;
             this.RSetLabel.Text = "Job positions";
             // 
@@ -380,11 +370,11 @@ namespace msi
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel6, 2, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 309);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 400);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(560, 94);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(644, 114);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
             // tableLayoutPanel5
@@ -392,24 +382,26 @@ namespace msi
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Controls.Add(this.CalculateButton, 0, 1);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(13, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 3;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(94, 88);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(94, 108);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // CalculateButton
             // 
             this.CalculateButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CalculateButton.Location = new System.Drawing.Point(3, 29);
+            this.CalculateButton.Location = new System.Drawing.Point(3, 39);
             this.CalculateButton.Name = "CalculateButton";
             this.CalculateButton.Size = new System.Drawing.Size(88, 29);
             this.CalculateButton.TabIndex = 0;
             this.CalculateButton.Text = "Calculate";
             this.CalculateButton.UseVisualStyleBackColor = true;
+            this.CalculateButton.Click += new System.EventHandler(this.CalculateButton_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -423,16 +415,19 @@ namespace msi
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(444, 88);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(528, 108);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // Result
             // 
+            this.Result.AllowUserToAddRows = false;
+            this.Result.AllowUserToDeleteRows = false;
             this.Result.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Result.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Result.Location = new System.Drawing.Point(3, 23);
             this.Result.Name = "Result";
-            this.Result.Size = new System.Drawing.Size(438, 62);
+            this.Result.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.Result.Size = new System.Drawing.Size(522, 82);
             this.Result.TabIndex = 1;
             // 
             // ResultLabel
@@ -441,9 +436,130 @@ namespace msi
             this.ResultLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ResultLabel.Location = new System.Drawing.Point(3, 0);
             this.ResultLabel.Name = "ResultLabel";
-            this.ResultLabel.Size = new System.Drawing.Size(438, 20);
+            this.ResultLabel.Size = new System.Drawing.Size(522, 20);
             this.ResultLabel.TabIndex = 2;
             this.ResultLabel.Text = "Result";
+            // 
+            // tableLayoutPanel30
+            // 
+            this.tableLayoutPanel30.ColumnCount = 1;
+            this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel30.Controls.Add(this.DataListGroupBox, 0, 2);
+            this.tableLayoutPanel30.Controls.Add(this.groupBox9, 0, 0);
+            this.tableLayoutPanel30.Controls.Add(this.groupBox10, 0, 1);
+            this.tableLayoutPanel30.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel30.Location = new System.Drawing.Point(663, 3);
+            this.tableLayoutPanel30.Name = "tableLayoutPanel30";
+            this.tableLayoutPanel30.RowCount = 3;
+            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel30.Size = new System.Drawing.Size(194, 381);
+            this.tableLayoutPanel30.TabIndex = 4;
+            // 
+            // DataListGroupBox
+            // 
+            this.DataListGroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.DataListGroupBox.Controls.Add(this.DataListLayoutPanel);
+            this.DataListGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataListGroupBox.Location = new System.Drawing.Point(3, 193);
+            this.DataListGroupBox.Name = "DataListGroupBox";
+            this.DataListGroupBox.Size = new System.Drawing.Size(188, 185);
+            this.DataListGroupBox.TabIndex = 3;
+            this.DataListGroupBox.TabStop = false;
+            this.DataListGroupBox.Text = "DataList";
+            // 
+            // DataListLayoutPanel
+            // 
+            this.DataListLayoutPanel.AutoScroll = true;
+            this.DataListLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataListLayoutPanel.Location = new System.Drawing.Point(3, 19);
+            this.DataListLayoutPanel.Name = "DataListLayoutPanel";
+            this.DataListLayoutPanel.Size = new System.Drawing.Size(182, 163);
+            this.DataListLayoutPanel.TabIndex = 0;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.standardRadioButton);
+            this.groupBox9.Controls.Add(this.productRadioButton);
+            this.groupBox9.Controls.Add(this.lukasiewiczRadioButton);
+            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox9.Location = new System.Drawing.Point(3, 3);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(188, 108);
+            this.groupBox9.TabIndex = 4;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Norm";
+            // 
+            // standardRadioButton
+            // 
+            this.standardRadioButton.AutoSize = true;
+            this.standardRadioButton.Location = new System.Drawing.Point(6, 72);
+            this.standardRadioButton.Name = "standardRadioButton";
+            this.standardRadioButton.Size = new System.Drawing.Size(72, 19);
+            this.standardRadioButton.TabIndex = 2;
+            this.standardRadioButton.Text = "Standard";
+            this.standardRadioButton.UseVisualStyleBackColor = true;
+            this.standardRadioButton.CheckedChanged += new System.EventHandler(this.standardRadioButton_CheckedChanged);
+            // 
+            // productRadioButton
+            // 
+            this.productRadioButton.AutoSize = true;
+            this.productRadioButton.Location = new System.Drawing.Point(6, 47);
+            this.productRadioButton.Name = "productRadioButton";
+            this.productRadioButton.Size = new System.Drawing.Size(67, 19);
+            this.productRadioButton.TabIndex = 1;
+            this.productRadioButton.Text = "Product";
+            this.productRadioButton.UseVisualStyleBackColor = true;
+            this.productRadioButton.CheckedChanged += new System.EventHandler(this.productRadioButton_CheckedChanged);
+            // 
+            // lukasiewiczRadioButton
+            // 
+            this.lukasiewiczRadioButton.AutoSize = true;
+            this.lukasiewiczRadioButton.Checked = true;
+            this.lukasiewiczRadioButton.Location = new System.Drawing.Point(6, 22);
+            this.lukasiewiczRadioButton.Name = "lukasiewiczRadioButton";
+            this.lukasiewiczRadioButton.Size = new System.Drawing.Size(87, 19);
+            this.lukasiewiczRadioButton.TabIndex = 0;
+            this.lukasiewiczRadioButton.TabStop = true;
+            this.lukasiewiczRadioButton.Text = "Lukasiewicz";
+            this.lukasiewiczRadioButton.UseVisualStyleBackColor = true;
+            this.lukasiewiczRadioButton.CheckedChanged += new System.EventHandler(this.lukasiewiczRadioButton_CheckedChanged);
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.euclideanRadioButton);
+            this.groupBox10.Controls.Add(this.hammingRadioButton);
+            this.groupBox10.Location = new System.Drawing.Point(3, 117);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(188, 70);
+            this.groupBox10.TabIndex = 5;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Distance";
+            // 
+            // euclideanRadioButton
+            // 
+            this.euclideanRadioButton.AutoSize = true;
+            this.euclideanRadioButton.Location = new System.Drawing.Point(6, 44);
+            this.euclideanRadioButton.Name = "euclideanRadioButton";
+            this.euclideanRadioButton.Size = new System.Drawing.Size(76, 19);
+            this.euclideanRadioButton.TabIndex = 1;
+            this.euclideanRadioButton.Text = "Euclidean";
+            this.euclideanRadioButton.UseVisualStyleBackColor = true;
+            this.euclideanRadioButton.CheckedChanged += new System.EventHandler(this.euclideanRadioButton_CheckedChanged);
+            // 
+            // hammingRadioButton
+            // 
+            this.hammingRadioButton.AutoSize = true;
+            this.hammingRadioButton.Checked = true;
+            this.hammingRadioButton.Location = new System.Drawing.Point(6, 22);
+            this.hammingRadioButton.Name = "hammingRadioButton";
+            this.hammingRadioButton.Size = new System.Drawing.Size(79, 19);
+            this.hammingRadioButton.TabIndex = 0;
+            this.hammingRadioButton.TabStop = true;
+            this.hammingRadioButton.Text = "Hamming";
+            this.hammingRadioButton.UseVisualStyleBackColor = true;
+            this.hammingRadioButton.CheckedChanged += new System.EventHandler(this.hammingRadioButton_CheckedChanged);
             // 
             // EditPage
             // 
@@ -451,7 +567,7 @@ namespace msi
             this.EditPage.Location = new System.Drawing.Point(4, 24);
             this.EditPage.Name = "EditPage";
             this.EditPage.Padding = new System.Windows.Forms.Padding(3);
-            this.EditPage.Size = new System.Drawing.Size(792, 422);
+            this.EditPage.Size = new System.Drawing.Size(776, 533);
             this.EditPage.TabIndex = 1;
             this.EditPage.Text = "Edit";
             this.EditPage.Enter += new System.EventHandler(this.EditPage_Enter);
@@ -470,7 +586,7 @@ namespace msi
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 210F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(786, 416);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(770, 527);
             this.tableLayoutPanel8.TabIndex = 0;
             // 
             // tableLayoutPanel10
@@ -488,30 +604,34 @@ namespace msi
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(780, 170);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(764, 281);
             this.tableLayoutPanel10.TabIndex = 0;
             // 
             // QSetEdit
             // 
+            this.QSetEdit.AllowUserToAddRows = false;
+            this.QSetEdit.AllowUserToDeleteRows = false;
             this.QSetEdit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.QSetEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.QSetEdit.Location = new System.Drawing.Point(13, 3);
             this.QSetEdit.Name = "QSetEdit";
             this.QSetEdit.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.QSetEdit.RowTemplate.Height = 25;
-            this.QSetEdit.Size = new System.Drawing.Size(364, 164);
+            this.QSetEdit.Size = new System.Drawing.Size(356, 275);
             this.QSetEdit.TabIndex = 0;
             this.QSetEdit.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.QSetEdit_CellEndEdit);
             // 
             // RSetEdit
             // 
+            this.RSetEdit.AllowUserToAddRows = false;
+            this.RSetEdit.AllowUserToDeleteRows = false;
             this.RSetEdit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RSetEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RSetEdit.Location = new System.Drawing.Point(403, 3);
+            this.RSetEdit.Location = new System.Drawing.Point(395, 3);
             this.RSetEdit.Name = "RSetEdit";
             this.RSetEdit.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.RSetEdit.RowTemplate.Height = 25;
-            this.RSetEdit.Size = new System.Drawing.Size(364, 164);
+            this.RSetEdit.Size = new System.Drawing.Size(356, 275);
             this.RSetEdit.TabIndex = 1;
             this.RSetEdit.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.RSetEdit_CellEndEdit);
             // 
@@ -526,17 +646,17 @@ namespace msi
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel13, 1, 0);
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel14, 5, 0);
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel15, 3, 0);
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel19, 7, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 199);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 310);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 1;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(780, 204);
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(764, 204);
             this.tableLayoutPanel12.TabIndex = 1;
             // 
             // tableLayoutPanel13
@@ -553,7 +673,7 @@ namespace msi
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(204, 198);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(196, 198);
             this.tableLayoutPanel13.TabIndex = 0;
             // 
             // tableLayoutPanel16
@@ -567,7 +687,7 @@ namespace msi
             this.tableLayoutPanel16.Name = "tableLayoutPanel16";
             this.tableLayoutPanel16.RowCount = 1;
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(198, 34);
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(190, 34);
             this.tableLayoutPanel16.TabIndex = 3;
             // 
             // CandidateTextBox
@@ -576,7 +696,7 @@ namespace msi
             this.CandidateTextBox.Location = new System.Drawing.Point(3, 3);
             this.CandidateTextBox.Multiline = true;
             this.CandidateTextBox.Name = "CandidateTextBox";
-            this.CandidateTextBox.Size = new System.Drawing.Size(192, 28);
+            this.CandidateTextBox.Size = new System.Drawing.Size(184, 28);
             this.CandidateTextBox.TabIndex = 1;
             // 
             // tableLayoutPanel26
@@ -591,16 +711,16 @@ namespace msi
             this.tableLayoutPanel26.Name = "tableLayoutPanel26";
             this.tableLayoutPanel26.RowCount = 1;
             this.tableLayoutPanel26.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel26.Size = new System.Drawing.Size(198, 152);
+            this.tableLayoutPanel26.Size = new System.Drawing.Size(190, 152);
             this.tableLayoutPanel26.TabIndex = 4;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel27);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(131, 3);
+            this.groupBox2.Location = new System.Drawing.Point(126, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(64, 146);
+            this.groupBox2.Size = new System.Drawing.Size(61, 146);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -620,7 +740,7 @@ namespace msi
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel27.Size = new System.Drawing.Size(58, 124);
+            this.tableLayoutPanel27.Size = new System.Drawing.Size(55, 124);
             this.tableLayoutPanel27.TabIndex = 1;
             // 
             // DeleteCandidateButton
@@ -628,7 +748,7 @@ namespace msi
             this.DeleteCandidateButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DeleteCandidateButton.Location = new System.Drawing.Point(3, 3);
             this.DeleteCandidateButton.Name = "DeleteCandidateButton";
-            this.DeleteCandidateButton.Size = new System.Drawing.Size(52, 35);
+            this.DeleteCandidateButton.Size = new System.Drawing.Size(49, 35);
             this.DeleteCandidateButton.TabIndex = 0;
             this.DeleteCandidateButton.Text = "Delete";
             this.DeleteCandidateButton.UseVisualStyleBackColor = true;
@@ -639,7 +759,7 @@ namespace msi
             this.AddCandidateButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddCandidateButton.Location = new System.Drawing.Point(3, 85);
             this.AddCandidateButton.Name = "AddCandidateButton";
-            this.AddCandidateButton.Size = new System.Drawing.Size(52, 36);
+            this.AddCandidateButton.Size = new System.Drawing.Size(49, 36);
             this.AddCandidateButton.TabIndex = 0;
             this.AddCandidateButton.Text = "Add";
             this.AddCandidateButton.UseVisualStyleBackColor = true;
@@ -650,7 +770,7 @@ namespace msi
             this.EditCandidateButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EditCandidateButton.Location = new System.Drawing.Point(3, 44);
             this.EditCandidateButton.Name = "EditCandidateButton";
-            this.EditCandidateButton.Size = new System.Drawing.Size(52, 35);
+            this.EditCandidateButton.Size = new System.Drawing.Size(49, 35);
             this.EditCandidateButton.TabIndex = 1;
             this.EditCandidateButton.Text = "Edit";
             this.EditCandidateButton.UseVisualStyleBackColor = true;
@@ -662,7 +782,7 @@ namespace msi
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(122, 146);
+            this.groupBox3.Size = new System.Drawing.Size(117, 146);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Candidates";
@@ -673,8 +793,9 @@ namespace msi
             this.CandidateLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CandidateLayoutPanel.Location = new System.Drawing.Point(3, 19);
             this.CandidateLayoutPanel.Name = "CandidateLayoutPanel";
-            this.CandidateLayoutPanel.Size = new System.Drawing.Size(116, 124);
+            this.CandidateLayoutPanel.Size = new System.Drawing.Size(111, 124);
             this.CandidateLayoutPanel.TabIndex = 0;
+            this.CandidateLayoutPanel.Resize += new System.EventHandler(this.CandidateLayoutPanel_Resize);
             // 
             // tableLayoutPanel14
             // 
@@ -684,12 +805,12 @@ namespace msi
             this.tableLayoutPanel14.Controls.Add(this.tableLayoutPanel25, 0, 0);
             this.tableLayoutPanel14.Cursor = System.Windows.Forms.Cursors.Default;
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel14.Location = new System.Drawing.Point(453, 3);
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(437, 3);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.RowCount = 2;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(204, 198);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(196, 198);
             this.tableLayoutPanel14.TabIndex = 1;
             // 
             // tableLayoutPanel18
@@ -702,7 +823,7 @@ namespace msi
             this.tableLayoutPanel18.Name = "tableLayoutPanel18";
             this.tableLayoutPanel18.RowCount = 1;
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(198, 34);
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(190, 34);
             this.tableLayoutPanel18.TabIndex = 5;
             // 
             // SkillTextBox
@@ -711,7 +832,7 @@ namespace msi
             this.SkillTextBox.Location = new System.Drawing.Point(3, 3);
             this.SkillTextBox.Multiline = true;
             this.SkillTextBox.Name = "SkillTextBox";
-            this.SkillTextBox.Size = new System.Drawing.Size(192, 28);
+            this.SkillTextBox.Size = new System.Drawing.Size(184, 28);
             this.SkillTextBox.TabIndex = 2;
             // 
             // tableLayoutPanel25
@@ -726,7 +847,7 @@ namespace msi
             this.tableLayoutPanel25.Name = "tableLayoutPanel25";
             this.tableLayoutPanel25.RowCount = 1;
             this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel25.Size = new System.Drawing.Size(198, 152);
+            this.tableLayoutPanel25.Size = new System.Drawing.Size(190, 152);
             this.tableLayoutPanel25.TabIndex = 6;
             // 
             // groupBox6
@@ -735,7 +856,7 @@ namespace msi
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(3, 3);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(122, 146);
+            this.groupBox6.Size = new System.Drawing.Size(117, 146);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Skills";
@@ -746,16 +867,17 @@ namespace msi
             this.SkillLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SkillLayoutPanel.Location = new System.Drawing.Point(3, 19);
             this.SkillLayoutPanel.Name = "SkillLayoutPanel";
-            this.SkillLayoutPanel.Size = new System.Drawing.Size(116, 124);
+            this.SkillLayoutPanel.Size = new System.Drawing.Size(111, 124);
             this.SkillLayoutPanel.TabIndex = 0;
+            this.SkillLayoutPanel.Resize += new System.EventHandler(this.SkillLayoutPanel_Resize);
             // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.tableLayoutPanel29);
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox8.Location = new System.Drawing.Point(131, 3);
+            this.groupBox8.Location = new System.Drawing.Point(126, 3);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(64, 146);
+            this.groupBox8.Size = new System.Drawing.Size(61, 146);
             this.groupBox8.TabIndex = 3;
             this.groupBox8.TabStop = false;
             // 
@@ -774,7 +896,7 @@ namespace msi
             this.tableLayoutPanel29.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel29.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel29.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel29.Size = new System.Drawing.Size(58, 124);
+            this.tableLayoutPanel29.Size = new System.Drawing.Size(55, 124);
             this.tableLayoutPanel29.TabIndex = 1;
             // 
             // DeleteSkillButton
@@ -782,7 +904,7 @@ namespace msi
             this.DeleteSkillButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DeleteSkillButton.Location = new System.Drawing.Point(3, 3);
             this.DeleteSkillButton.Name = "DeleteSkillButton";
-            this.DeleteSkillButton.Size = new System.Drawing.Size(52, 35);
+            this.DeleteSkillButton.Size = new System.Drawing.Size(49, 35);
             this.DeleteSkillButton.TabIndex = 0;
             this.DeleteSkillButton.Text = "Delete";
             this.DeleteSkillButton.UseVisualStyleBackColor = true;
@@ -793,7 +915,7 @@ namespace msi
             this.AddSkillButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddSkillButton.Location = new System.Drawing.Point(3, 85);
             this.AddSkillButton.Name = "AddSkillButton";
-            this.AddSkillButton.Size = new System.Drawing.Size(52, 36);
+            this.AddSkillButton.Size = new System.Drawing.Size(49, 36);
             this.AddSkillButton.TabIndex = 0;
             this.AddSkillButton.Text = "Add";
             this.AddSkillButton.UseVisualStyleBackColor = true;
@@ -804,7 +926,7 @@ namespace msi
             this.EditSkillButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EditSkillButton.Location = new System.Drawing.Point(3, 44);
             this.EditSkillButton.Name = "EditSkillButton";
-            this.EditSkillButton.Size = new System.Drawing.Size(52, 35);
+            this.EditSkillButton.Size = new System.Drawing.Size(49, 35);
             this.EditSkillButton.TabIndex = 1;
             this.EditSkillButton.Text = "Edit";
             this.EditSkillButton.UseVisualStyleBackColor = true;
@@ -818,13 +940,13 @@ namespace msi
             this.tableLayoutPanel15.Controls.Add(this.tableLayoutPanel24, 0, 0);
             this.tableLayoutPanel15.Cursor = System.Windows.Forms.Cursors.Default;
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel15.Location = new System.Drawing.Point(233, 3);
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(225, 3);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 2;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(204, 198);
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(196, 198);
             this.tableLayoutPanel15.TabIndex = 1;
             // 
             // tableLayoutPanel17
@@ -838,7 +960,7 @@ namespace msi
             this.tableLayoutPanel17.Name = "tableLayoutPanel17";
             this.tableLayoutPanel17.RowCount = 1;
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel17.Size = new System.Drawing.Size(198, 34);
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(190, 34);
             this.tableLayoutPanel17.TabIndex = 4;
             // 
             // JobPositionTextBox
@@ -847,7 +969,7 @@ namespace msi
             this.JobPositionTextBox.Location = new System.Drawing.Point(3, 3);
             this.JobPositionTextBox.Multiline = true;
             this.JobPositionTextBox.Name = "JobPositionTextBox";
-            this.JobPositionTextBox.Size = new System.Drawing.Size(192, 28);
+            this.JobPositionTextBox.Size = new System.Drawing.Size(184, 28);
             this.JobPositionTextBox.TabIndex = 2;
             // 
             // tableLayoutPanel24
@@ -862,7 +984,7 @@ namespace msi
             this.tableLayoutPanel24.Name = "tableLayoutPanel24";
             this.tableLayoutPanel24.RowCount = 1;
             this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel24.Size = new System.Drawing.Size(198, 152);
+            this.tableLayoutPanel24.Size = new System.Drawing.Size(190, 152);
             this.tableLayoutPanel24.TabIndex = 5;
             // 
             // groupBox4
@@ -871,7 +993,7 @@ namespace msi
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(3, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(122, 146);
+            this.groupBox4.Size = new System.Drawing.Size(117, 146);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Job positions";
@@ -882,16 +1004,17 @@ namespace msi
             this.JobPositionLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.JobPositionLayoutPanel.Location = new System.Drawing.Point(3, 19);
             this.JobPositionLayoutPanel.Name = "JobPositionLayoutPanel";
-            this.JobPositionLayoutPanel.Size = new System.Drawing.Size(116, 124);
+            this.JobPositionLayoutPanel.Size = new System.Drawing.Size(111, 124);
             this.JobPositionLayoutPanel.TabIndex = 0;
+            this.JobPositionLayoutPanel.Resize += new System.EventHandler(this.JobPositionLayoutPanel_Resize);
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.tableLayoutPanel28);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(131, 3);
+            this.groupBox5.Location = new System.Drawing.Point(126, 3);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(64, 146);
+            this.groupBox5.Size = new System.Drawing.Size(61, 146);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             // 
@@ -911,7 +1034,7 @@ namespace msi
             this.tableLayoutPanel28.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel28.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel28.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel28.Size = new System.Drawing.Size(58, 124);
+            this.tableLayoutPanel28.Size = new System.Drawing.Size(55, 124);
             this.tableLayoutPanel28.TabIndex = 1;
             // 
             // DeleteJobPositionButton
@@ -919,7 +1042,7 @@ namespace msi
             this.DeleteJobPositionButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DeleteJobPositionButton.Location = new System.Drawing.Point(3, 3);
             this.DeleteJobPositionButton.Name = "DeleteJobPositionButton";
-            this.DeleteJobPositionButton.Size = new System.Drawing.Size(52, 35);
+            this.DeleteJobPositionButton.Size = new System.Drawing.Size(49, 35);
             this.DeleteJobPositionButton.TabIndex = 0;
             this.DeleteJobPositionButton.Text = "Delete";
             this.DeleteJobPositionButton.UseVisualStyleBackColor = true;
@@ -930,7 +1053,7 @@ namespace msi
             this.AddJobPositionButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddJobPositionButton.Location = new System.Drawing.Point(3, 85);
             this.AddJobPositionButton.Name = "AddJobPositionButton";
-            this.AddJobPositionButton.Size = new System.Drawing.Size(52, 36);
+            this.AddJobPositionButton.Size = new System.Drawing.Size(49, 36);
             this.AddJobPositionButton.TabIndex = 0;
             this.AddJobPositionButton.Text = "Add";
             this.AddJobPositionButton.UseVisualStyleBackColor = true;
@@ -941,7 +1064,7 @@ namespace msi
             this.EditJobPositionButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EditJobPositionButton.Location = new System.Drawing.Point(3, 44);
             this.EditJobPositionButton.Name = "EditJobPositionButton";
-            this.EditJobPositionButton.Size = new System.Drawing.Size(52, 35);
+            this.EditJobPositionButton.Size = new System.Drawing.Size(49, 35);
             this.EditJobPositionButton.TabIndex = 1;
             this.EditJobPositionButton.Text = "Edit";
             this.EditJobPositionButton.UseVisualStyleBackColor = true;
@@ -954,7 +1077,7 @@ namespace msi
             this.tableLayoutPanel19.Controls.Add(this.SaveButton, 0, 4);
             this.tableLayoutPanel19.Controls.Add(this.groupBox1, 0, 3);
             this.tableLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel19.Location = new System.Drawing.Point(673, 3);
+            this.tableLayoutPanel19.Location = new System.Drawing.Point(649, 3);
             this.tableLayoutPanel19.Name = "tableLayoutPanel19";
             this.tableLayoutPanel19.RowCount = 5;
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -1000,7 +1123,7 @@ namespace msi
             this.IndirectCalculationsPage.Controls.Add(this.tableLayoutPanel7);
             this.IndirectCalculationsPage.Location = new System.Drawing.Point(4, 24);
             this.IndirectCalculationsPage.Name = "IndirectCalculationsPage";
-            this.IndirectCalculationsPage.Size = new System.Drawing.Size(792, 422);
+            this.IndirectCalculationsPage.Size = new System.Drawing.Size(776, 533);
             this.IndirectCalculationsPage.TabIndex = 2;
             this.IndirectCalculationsPage.Text = "Indirect calculations";
             this.IndirectCalculationsPage.UseVisualStyleBackColor = true;
@@ -1021,7 +1144,7 @@ namespace msi
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(792, 422);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(776, 533);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // tableLayoutPanel20
@@ -1039,7 +1162,7 @@ namespace msi
             this.tableLayoutPanel20.Name = "tableLayoutPanel20";
             this.tableLayoutPanel20.RowCount = 1;
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel20.Size = new System.Drawing.Size(782, 184);
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(766, 239);
             this.tableLayoutPanel20.TabIndex = 0;
             // 
             // FirstStepGroupBox
@@ -1048,57 +1171,61 @@ namespace msi
             this.FirstStepGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FirstStepGroupBox.Location = new System.Drawing.Point(13, 3);
             this.FirstStepGroupBox.Name = "FirstStepGroupBox";
-            this.FirstStepGroupBox.Size = new System.Drawing.Size(370, 178);
+            this.FirstStepGroupBox.Size = new System.Drawing.Size(362, 233);
             this.FirstStepGroupBox.TabIndex = 0;
             this.FirstStepGroupBox.TabStop = false;
             this.FirstStepGroupBox.Text = "First step";
             // 
             // FirstStepSet
             // 
+            this.FirstStepSet.AllowUserToAddRows = false;
+            this.FirstStepSet.AllowUserToDeleteRows = false;
             this.FirstStepSet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FirstStepSet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FirstStepSet.Location = new System.Drawing.Point(3, 19);
             this.FirstStepSet.Name = "FirstStepSet";
+            this.FirstStepSet.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.FirstStepSet.RowTemplate.Height = 25;
-            this.FirstStepSet.Size = new System.Drawing.Size(364, 156);
+            this.FirstStepSet.Size = new System.Drawing.Size(356, 211);
             this.FirstStepSet.TabIndex = 0;
             // 
             // SecondStepGroupBox
             // 
             this.SecondStepGroupBox.Controls.Add(this.SecondStep);
             this.SecondStepGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SecondStepGroupBox.Location = new System.Drawing.Point(399, 3);
+            this.SecondStepGroupBox.Location = new System.Drawing.Point(391, 3);
             this.SecondStepGroupBox.Name = "SecondStepGroupBox";
-            this.SecondStepGroupBox.Size = new System.Drawing.Size(370, 178);
+            this.SecondStepGroupBox.Size = new System.Drawing.Size(362, 233);
             this.SecondStepGroupBox.TabIndex = 1;
             this.SecondStepGroupBox.TabStop = false;
             this.SecondStepGroupBox.Text = "Second step";
             // 
             // SecondStep
             // 
+            this.SecondStep.AllowUserToAddRows = false;
+            this.SecondStep.AllowUserToDeleteRows = false;
             this.SecondStep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SecondStep.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SecondStep.Location = new System.Drawing.Point(3, 19);
             this.SecondStep.Name = "SecondStep";
+            this.SecondStep.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.SecondStep.RowTemplate.Height = 25;
-            this.SecondStep.Size = new System.Drawing.Size(364, 156);
+            this.SecondStep.Size = new System.Drawing.Size(356, 211);
             this.SecondStep.TabIndex = 0;
             // 
             // tableLayoutPanel21
             // 
-            this.tableLayoutPanel21.ColumnCount = 5;
-            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel21.ColumnCount = 3;
             this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel21.Controls.Add(this.ThirdStepGroupBox, 1, 0);
             this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel21.Location = new System.Drawing.Point(5, 221);
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(5, 276);
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
             this.tableLayoutPanel21.RowCount = 1;
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel21.Size = new System.Drawing.Size(782, 184);
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(766, 239);
             this.tableLayoutPanel21.TabIndex = 1;
             // 
             // ThirdStepGroupBox
@@ -1107,19 +1234,22 @@ namespace msi
             this.ThirdStepGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ThirdStepGroupBox.Location = new System.Drawing.Point(13, 3);
             this.ThirdStepGroupBox.Name = "ThirdStepGroupBox";
-            this.ThirdStepGroupBox.Size = new System.Drawing.Size(370, 178);
+            this.ThirdStepGroupBox.Size = new System.Drawing.Size(740, 233);
             this.ThirdStepGroupBox.TabIndex = 0;
             this.ThirdStepGroupBox.TabStop = false;
             this.ThirdStepGroupBox.Text = "Third step";
             // 
             // ThirdStep
             // 
+            this.ThirdStep.AllowUserToAddRows = false;
+            this.ThirdStep.AllowUserToDeleteRows = false;
             this.ThirdStep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ThirdStep.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ThirdStep.Location = new System.Drawing.Point(3, 19);
             this.ThirdStep.Name = "ThirdStep";
+            this.ThirdStep.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.ThirdStep.RowTemplate.Height = 25;
-            this.ThirdStep.Size = new System.Drawing.Size(364, 156);
+            this.ThirdStep.Size = new System.Drawing.Size(734, 211);
             this.ThirdStep.TabIndex = 0;
             // 
             // tableLayoutPanel22
@@ -1194,14 +1324,14 @@ namespace msi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.TabControlMenu);
+            this.MinimumSize = new System.Drawing.Size(900, 600);
             this.Name = "MainWindow";
             this.Text = "MainWindow";
             this.TabControlMenu.ResumeLayout(false);
             this.MainPage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.DataListGroupBox.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
@@ -1212,6 +1342,12 @@ namespace msi
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Result)).EndInit();
+            this.tableLayoutPanel30.ResumeLayout(false);
+            this.DataListGroupBox.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.EditPage.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
@@ -1262,8 +1398,6 @@ namespace msi
         private System.Windows.Forms.TabPage MainPage;
         private System.Windows.Forms.TabPage IndirectCalculationsPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.GroupBox DataListGroupBox;
-        private System.Windows.Forms.FlowLayoutPanel DataListLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button AddNewDataButton;
         private System.Windows.Forms.Button DeleteDataButton;
@@ -1340,6 +1474,16 @@ namespace msi
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel30;
+        private System.Windows.Forms.GroupBox DataListGroupBox;
+        private System.Windows.Forms.FlowLayoutPanel DataListLayoutPanel;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.RadioButton standardRadioButton;
+        private System.Windows.Forms.RadioButton productRadioButton;
+        private System.Windows.Forms.RadioButton lukasiewiczRadioButton;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.RadioButton euclideanRadioButton;
+        private System.Windows.Forms.RadioButton hammingRadioButton;
     }
 }
 
