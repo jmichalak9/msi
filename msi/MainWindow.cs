@@ -104,7 +104,7 @@ namespace msi
                 {
                     Name = $"jobposition{rowname}",
                     Text = rowname,
-                    Size = new Size(90, 23)
+                    Size = new Size(JobPositionLayoutPanel.Width - 30, 23)
                 };
 
                 newButton.Click += (object sender, EventArgs e) =>
@@ -129,7 +129,7 @@ namespace msi
                 {
                     Name = $"candidate{rowname}",
                     Text = rowname,
-                    Size = new Size(90, 23)
+                    Size = new Size(CandidateLayoutPanel.Width - 30, 23)
                 };
 
                 newButton.Click += (object sender, EventArgs e) =>
@@ -154,7 +154,7 @@ namespace msi
                 {
                     Name = $"skill{colname}",
                     Text = colname,
-                    Size = new Size(90, 23)
+                    Size = new Size(SkillLayoutPanel.Width - 30, 23)
                 };
 
                 newButton.Click += (object sender, EventArgs e) =>
@@ -868,6 +868,29 @@ namespace msi
             if (button.Checked)
             {
                 dist = Distances.EuclideanSetDistance;
+            }
+        }
+
+        private void CandidateLayoutPanel_Resize(object sender, EventArgs e)
+        {
+            ResizeLayoutPanelButtons((FlowLayoutPanel)sender);
+        }
+
+        private void JobPositionLayoutPanel_Resize(object sender, EventArgs e)
+        {
+            ResizeLayoutPanelButtons((FlowLayoutPanel)sender);
+        }
+
+        private void SkillLayoutPanel_Resize(object sender, EventArgs e)
+        {
+            ResizeLayoutPanelButtons((FlowLayoutPanel)sender);
+        }
+
+        private void ResizeLayoutPanelButtons(FlowLayoutPanel panel)
+        {
+            foreach (Button button in panel.Controls)
+            {
+                button.Width = panel.Width - 30;
             }
         }
     }
