@@ -35,7 +35,6 @@ namespace msi
 
         private void EditPage_Enter(object sender, EventArgs e)
         {
-            AnyChanges = false;
             if (SelectedData != null)
             {
                 CurrentEditedData = SelectedData.Clone();
@@ -46,6 +45,7 @@ namespace msi
                 CurrentEditedData.Name = "NewData";
             }
             EditWindowLoadData(CurrentEditedData);
+            AnyChanges = false;
         }
 
         private void EditPage_Leave(object sender, EventArgs e)
