@@ -293,6 +293,7 @@ namespace msi
             foreach (Button button in panel.Controls)
             {
                 button.Width = panel.Width - 30;
+                button.Height = Math.Min(40,button.Width*23/102);
             }
         }
     }
