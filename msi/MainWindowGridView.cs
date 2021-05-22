@@ -46,6 +46,7 @@ namespace msi
 
         private void QSetEdit_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            AnyChanges = true;
             DataGridView dataGrid = (DataGridView)sender;
             var oldData = CurrentEditedData.Q.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex];
             try
@@ -69,6 +70,7 @@ namespace msi
 
         private void RSetEdit_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            AnyChanges = true;
             DataGridView dataGrid = (DataGridView)sender;
             var oldData = CurrentEditedData.R.Numbers[dataGrid.CurrentCell.RowIndex, dataGrid.CurrentCell.ColumnIndex];
             try

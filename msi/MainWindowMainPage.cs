@@ -22,7 +22,7 @@ namespace msi
 
         private void MainPage_Enter(object sender, EventArgs e)
         {
-
+            MainWindowLoadData(SelectedData);
         }
 
         private void AddNewDataButton_Click(object sender, EventArgs e)

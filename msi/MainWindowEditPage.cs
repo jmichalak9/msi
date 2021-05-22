@@ -11,6 +11,7 @@ namespace msi
 {
     public partial class MainWindow : Form
     {
+        private bool AnyChanges = false;
         private void EditWindowLoadData(Data data)
         {
             ClearDataGridView(QSetEdit);
@@ -34,6 +35,7 @@ namespace msi
 
         private void EditPage_Enter(object sender, EventArgs e)
         {
+            AnyChanges = false;
             if (SelectedData != null)
             {
                 CurrentEditedData = SelectedData.Clone();
@@ -41,16 +43,29 @@ namespace msi
             else
             {
                 CurrentEditedData = new Data();
+                CurrentEditedData.Name = "NewData";
             }
             EditWindowLoadData(CurrentEditedData);
         }
-       
-        private void SaveButton_Click(object sender, EventArgs e)
+
+        private void EditPage_Leave(object sender, EventArgs e)
+        {
+            if(AnyChanges)
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to save", "Save data", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    SaveData();
+                }
+            }
+        }
+
+        private void SaveData()
         {
             if (string.IsNullOrEmpty(CurrentEditedData.Name))
             {
-                MessageBox.Show("Data name can not be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("Data name can not be empty. Data name is now \"EditedData\"", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CurrentEditedData.Name = "EditedData";
             }
             if (SelectedData == null)
             {
@@ -63,11 +78,17 @@ namespace msi
                 ((Button)DataListLayoutPanel.Controls.Find($"data{SelectedData.Number}", false).First()).Text = SelectedData.Name;
             }
             MainWindowLoadData(SelectedData);
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            SaveData();
             TabControlMenu.SelectedTab = MainPage;
         }
 
         private void NameEditTextBox_TextChanged(object sender, EventArgs e)
         {
+            AnyChanges = true;
             CurrentEditedData.Name = ((TextBox)sender).Text;
         }
 
@@ -151,6 +172,7 @@ namespace msi
         #region DeleteElementFromLayoutPanel
         private void DeleteCandidateButton_Click(object sender, EventArgs e)
         {
+            AnyChanges = true;
             if (SelectedCandidate == null)
             {
                 MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -163,6 +185,7 @@ namespace msi
 
         private void DeleteJobPositionButton_Click(object sender, EventArgs e)
         {
+            AnyChanges = true;
             if (SelectedJobPosition == null)
             {
                 MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -175,6 +198,7 @@ namespace msi
 
         private void DeleteSkillButton_Click(object sender, EventArgs e)
         {
+            AnyChanges = true;
             if (SelectedSkill == null)
             {
                 MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -190,6 +214,7 @@ namespace msi
         #region EditElementInLayoutPanel
         private void EditCandidateButton_Click(object sender, EventArgs e)
         {
+            AnyChanges = true;
             if (SelectedCandidate == null)
             {
                 MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -215,6 +240,7 @@ namespace msi
 
         private void EditJobPositionButton_Click(object sender, EventArgs e)
         {
+            AnyChanges = true;
             if (SelectedJobPosition == null)
             {
                 MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -240,6 +266,7 @@ namespace msi
 
         private void EditSkillButton_Click(object sender, EventArgs e)
         {
+            AnyChanges = true;
             if (SelectedSkill == null)
             {
                 MessageBox.Show("Select candidate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -268,6 +295,7 @@ namespace msi
         #region AddElementToLayoutPanel
         private void AddCandidateButton_Click(object sender, EventArgs e)
         {
+            AnyChanges = true;
             if (string.IsNullOrEmpty(CandidateTextBox.Text))
             {
                 MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -287,6 +315,7 @@ namespace msi
 
         private void AddJobPositionButton_Click(object sender, EventArgs e)
         {
+            AnyChanges = true;
             if (string.IsNullOrEmpty(JobPositionTextBox.Text))
             {
                 MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -306,6 +335,7 @@ namespace msi
 
         private void AddSkillButton_Click(object sender, EventArgs e)
         {
+            AnyChanges = true;
             if (string.IsNullOrEmpty(SkillTextBox.Text))
             {
                 MessageBox.Show("Text is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -572,6 +572,7 @@ namespace msi
             this.EditPage.TabIndex = 1;
             this.EditPage.Text = "Edit";
             this.EditPage.Enter += new System.EventHandler(this.EditPage_Enter);
+            this.EditPage.Leave += new System.EventHandler(this.EditPage_Leave);
             // 
             // tableLayoutPanel8
             // 
@@ -647,7 +648,7 @@ namespace msi
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 19F));
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel13, 1, 0);
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel14, 5, 0);
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel15, 3, 0);
@@ -1329,7 +1330,7 @@ namespace msi
             this.Controls.Add(this.TabControlMenu);
             this.MinimumSize = new System.Drawing.Size(900, 600);
             this.Name = "MainWindow";
-            this.Text = "MainWindow";
+            this.Text = "Approximation calculator for the best candidate ";
             this.TabControlMenu.ResumeLayout(false);
             this.MainPage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
