@@ -81,7 +81,6 @@ namespace msi
 
 		private void SaveButton_Click(object sender, EventArgs e)
 		{
-			SaveData();
 			TabControlMenu.SelectedTab = MainPage;
 		}
 
