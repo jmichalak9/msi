@@ -76,7 +76,7 @@ namespace msi
 				Name = $"data{data.Number}",
 				Text = data.Name,
 				Size = new Size(DataListLayoutPanel.Width - 30, 40)
-		};
+			};
 
 			dataButton.Click += (object sender, EventArgs e) =>
 			{
