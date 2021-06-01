@@ -72,7 +72,7 @@ namespace msi
 			}
 			catch
 			{
-				MessageBox.Show($"File was not loaded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("File was not loaded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
