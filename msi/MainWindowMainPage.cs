@@ -85,7 +85,7 @@ namespace msi
 						StreamWriter streamWriter = new(newStream);
 						streamWriter.Write(serivalizedScene);
 						streamWriter.Close();
-						MessageBox.Show("Saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						MessageBox.Show("Successfully saved!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					}
 					catch
 					{
