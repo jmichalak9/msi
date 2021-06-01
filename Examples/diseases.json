@@ -1,0 +1,89 @@
+{
+	"Candidates": [
+		"Viral fever",
+		"Malaria",
+		"Typhoid",
+		"Stomach problem",
+		"Chest problem"
+	],
+	"JobPositions": [
+		"Al",
+		"Bob",
+		"Joe",
+		"Ted"
+	],
+	"Skills": [
+		"Temperature",
+		"Headache",
+		"Stomach pain",
+		"Cough",
+		"Chest pain"
+	],
+	"CandidatesRates": [
+		[
+			0.4,
+			0.3,
+			0.1,
+			0.4,
+			0.1
+		],
+		[
+			0.7,
+			0.1,
+			0,
+			0.7,
+			0.1
+		],
+		[
+			0.3,
+			0.6,
+			0.2,
+			0.2,
+			0.1
+		],
+		[
+			0.1,
+			0.2,
+			0.8,
+			0.2,
+			0.2
+		],
+		[
+			0.1,
+			0,
+			0.2,
+			0.2,
+			0.8
+		]
+	],
+	"JobPositionsRates": [
+		[
+			0.8,
+			0.6,
+			0.2,
+			0.6,
+			0.1
+		],
+		[
+			0,
+			0.4,
+			0.6,
+			0.1,
+			0.1
+		],
+		[
+			0.8,
+			0.8,
+			0,
+			0.2,
+			0
+		],
+		[
+			0.6,
+			0.5,
+			0.3,
+			0.7,
+			0.3
+		]
+	]
+}
