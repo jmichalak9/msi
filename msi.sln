@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "msi", "msi\msi.csproj", "{1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuzzySetLib", "FuzzySetLib\FuzzySetLib.csproj", "{0AFB7CF1-78E8-443F-8B86-F2AD75FB05A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuzzySetLibTests", "FuzzySetLibTests\FuzzySetLibTests.csproj", "{9E8D54CC-74B2-480D-8FE8-7EA581D17393}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuzzySetLibTests", "FuzzySetLibTests\FuzzySetLibTests.csproj", "{9E8D54CC-74B2-480D-8FE8-7EA581D17393}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,16 +15,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{159F7358-B74B-483B-BEC7-468558AC251B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{159F7358-B74B-483B-BEC7-468558AC251B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{159F7358-B74B-483B-BEC7-468558AC251B}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{159F7358-B74B-483B-BEC7-468558AC251B}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{159F7358-B74B-483B-BEC7-468558AC251B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{159F7358-B74B-483B-BEC7-468558AC251B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0AFB7CF1-78E8-443F-8B86-F2AD75FB05A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0AFB7CF1-78E8-443F-8B86-F2AD75FB05A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AFB7CF1-78E8-443F-8B86-F2AD75FB05A4}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{0AFB7CF1-78E8-443F-8B86-F2AD75FB05A4}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{0AFB7CF1-78E8-443F-8B86-F2AD75FB05A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AFB7CF1-78E8-443F-8B86-F2AD75FB05A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E8D54CC-74B2-480D-8FE8-7EA581D17393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E8D54CC-74B2-480D-8FE8-7EA581D17393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E8D54CC-74B2-480D-8FE8-7EA581D17393}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{9E8D54CC-74B2-480D-8FE8-7EA581D17393}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{9E8D54CC-74B2-480D-8FE8-7EA581D17393}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E8D54CC-74B2-480D-8FE8-7EA581D17393}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

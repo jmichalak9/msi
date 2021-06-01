@@ -16,16 +16,7 @@ namespace msi
 		{
 			get
 			{
-				string path = Application.StartupPath;
-				int x = path.LastIndexOf("\\");
-				for (int i = 0; i < 3; i++)
-				{
-					path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-					x = path.LastIndexOf("\\");
-				}
-				path = path.Remove(path.LastIndexOf("\\"), path.Length - x);
-				path += "\\Examples";
-				return path;
+				return Application.StartupPath + "Examples";
 			}
 		}
 		private Button SelectedCandidate = null;
@@ -44,9 +35,27 @@ namespace msi
 		public MainWindow()
 		{
 			InitializeComponent();
-			LoadDataFromPath(ExamplesPath + "\\diseases.json");
-			LoadDataFromPath(ExamplesPath + "\\employees-1.json");
-			LoadDataFromPath(ExamplesPath + "\\employees-2.json");
+			try
+            {
+				CreateDirectoryIfNotExists();
+				LoadDatas();
+            }
+			catch { }
+		}
+
+		private void CreateDirectoryIfNotExists()
+        {
+			Directory.CreateDirectory(ExamplesPath);
+		}
+
+		private void LoadDatas()
+        {
+            string[] files = Directory.GetFiles(ExamplesPath);
+			foreach(string file in files)
+            {
+				if (file.EndsWith(".json"))
+					LoadDataFromPath(file);
+			}
 		}
 
 		private async void LoadDataFromPath(string path)
@@ -56,13 +65,13 @@ namespace msi
 			{
 				Data data = await JsonSerializer.DeserializeAsync<DataJsonClass>(openStream);
 				int x = path.LastIndexOf("\\");
-				int dot = path.IndexOf('.');
+				int dot = path.LastIndexOf('.');
 				data.Name = path.Substring(x + 1, dot - 1 - x);
 				AddNewData(ref data);
 			}
 			catch
 			{
-				MessageBox.Show("File was not loaded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show($"File was not loaded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
