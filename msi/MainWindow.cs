@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.Json;
 using System.Windows.Forms;
 
@@ -16,7 +17,7 @@ namespace msi
 		{
 			get
 			{
-				return Application.StartupPath + "Examples";
+				return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Examples";
 			}
 		}
 		private Button SelectedCandidate = null;
