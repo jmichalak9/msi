@@ -12,7 +12,7 @@ namespace FuzzySetLib
 
 		public override string ToString()
 		{
-			return "(" + Math.Round(upper, 3).ToString() + "; " + Math.Round(lower, 3).ToString() + ")";
+			return "(" + Math.Round(lower, 3).ToString() + "; " + Math.Round(upper, 3).ToString() + ")";
 		}
 	}
 	public class Approximations
